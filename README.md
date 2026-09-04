@@ -71,3 +71,60 @@ The main objective is not just to build a model, but to understand the complete 
 ## 📚 Learning Outcome
 
 Through this project, I learned the basic workflow of a supervised machine learning classification problem and how to train, predict, and evaluate a Logistic Regression model.
+
+
+# Day 02 — House Price Prediction using Linear Regression
+
+## 📌 Project Overview
+
+For Day 2 of my Machine Learning journey, I built a **House Price Prediction** model using **Linear Regression**.
+
+The model predicts house prices based on:
+
+* Area in square feet
+* Number of bedrooms
+* Age of the house
+
+## 🧠 Concept
+
+**Supervised Learning → Regression**
+
+## 🤖 Algorithm
+
+**Linear Regression**
+
+## 🛠️ Technologies
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Google Colab
+
+## 🔄 Machine Learning Workflow
+
+Dataset → Data Exploration → Visualization → Feature Selection → Train/Test Split → Model Training → Prediction → Evaluation
+
+## 📊 Evaluation Metrics
+
+The model was evaluated using:
+
+* Mean Absolute Error (MAE)
+* Mean Squared Error (MSE)
+* Root Mean Squared Error (RMSE)
+* R² Score
+
+## 🎯 Learning Outcome
+
+This project helped me understand how regression models learn relationships between input features and a continuous target value.
+
+I also learned how to evaluate predictions using different regression metrics.
+
+## 🚀 Next Step
+
+Continue building and learning a new Machine Learning concept every day.
+
+**Day 2/30 — Learning by Building.**
+
