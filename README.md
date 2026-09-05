@@ -128,3 +128,130 @@ Continue building and learning a new Machine Learning concept every day.
 
 **Day 2/30 — Learning by Building.**
 
+
+🌸 Day 03 — Iris Flower Classification using Decision Tree
+📌 Project Overview
+
+As part of my 30-Day Machine Learning Journey, I built an Iris Flower Classification model using a Decision Tree Classifier.
+
+The model learns from flower measurements and predicts the species of an Iris flower.
+
+🎯 Objective
+
+To build a supervised machine learning classification model that can identify the species of an Iris flower based on its physical measurements.
+
+🧠 Machine Learning Concept
+
+Supervised Learning → Classification
+
+The model learns from labeled data and predicts one of three Iris species:
+
+🌸 Iris Setosa
+🌸 Iris Versicolor
+🌸 Iris Virginica
+🤖 Algorithm Used
+
+Decision Tree Classifier
+
+A Decision Tree makes predictions by creating a series of decision rules based on the input features.
+
+📊 Dataset
+
+The project uses the Iris Dataset, containing 150 flower samples.
+
+Features
+Feature	Description
+Sepal Length	Length of the sepal
+Sepal Width	Width of the sepal
+Petal Length	Length of the petal
+Petal Width	Width of the petal
+Target
+
+The target variable represents the Iris species:
+
+0 → Setosa
+1 → Versicolor
+2 → Virginica
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab
+Jupyter Notebook
+🔄 Machine Learning Workflow
+Iris Dataset
+     ↓
+Data Loading
+     ↓
+Data Exploration
+     ↓
+Data Visualization
+     ↓
+Train/Test Split
+     ↓
+Decision Tree Model
+     ↓
+Model Training
+     ↓
+Prediction
+     ↓
+Model Evaluation
+     ↓
+New Flower Prediction
+📈 Model Evaluation
+
+The model is evaluated using:
+
+Accuracy Score
+Classification Report
+Confusion Matrix
+
+The confusion matrix helps understand how correctly the model classified each Iris species.
+
+🌳 Decision Tree Visualization
+
+The project also visualizes the trained Decision Tree to understand how the model makes classification decisions.
+
+🔮 Example Prediction
+
+The model can predict the species of a new flower using its:
+
+Sepal Length
+Sepal Width
+Petal Length
+Petal Width
+
+Example:
+
+Input:
+Sepal Length = 5.1
+Sepal Width  = 3.5
+Petal Length = 1.4
+Petal Width  = 0.2
+
+Prediction:
+Iris Setosa
+📚 What I Learned
+
+Through this project, I learned:
+
+Basics of classification
+How Decision Trees work
+Loading datasets using Scikit-learn
+Train/test splitting
+Model training
+Making predictions
+Accuracy evaluation
+Confusion matrix
+Classification reports
+Decision Tree visualization
+🚀 Future Improvements
+Compare Decision Tree with Random Forest
+Try K-Nearest Neighbors
+Compare multiple classification algorithms
+Perform hyperparameter tuning
+Deploy the model as a web application using Streamlit
+
