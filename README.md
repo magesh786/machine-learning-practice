@@ -255,3 +255,189 @@ Compare multiple classification algorithms
 Perform hyperparameter tuning
 Deploy the model as a web application using Streamlit
 
+
+🧠 Day 04 — Breast Cancer Classification using KNN
+📌 Project Overview
+
+As part of my 30-Day Machine Learning Journey, I explored the K-Nearest Neighbors (KNN) algorithm and built a classification model using the Breast Cancer dataset.
+
+The model learns patterns from medical measurement features and predicts whether a tumor belongs to the malignant or benign class.
+
+Note: This is an educational machine learning project and is not intended for medical diagnosis or clinical use.
+
+🎯 Objective
+
+The main objective of this project is to understand how the K-Nearest Neighbors algorithm works for a binary classification problem.
+
+The project also explores how different K values affect model performance.
+
+🧠 Machine Learning Concept
+
+Supervised Learning → Classification
+
+KNN classifies a new data point based on the classes of its nearest neighboring data points.
+
+🤖 Algorithm Used
+K-Nearest Neighbors (KNN)
+
+KNN predicts the class of a new observation by looking at the K closest training samples.
+
+For example:
+
+New Data Point
+      ↓
+Find nearest neighbors
+      ↓
+Check their classes
+      ↓
+Majority voting
+      ↓
+Predicted Class
+📊 Dataset
+
+This project uses the Breast Cancer Wisconsin dataset available through Scikit-learn.
+
+The dataset contains 569 samples and 30 numerical features describing characteristics of cell nuclei.
+
+Example Features
+Mean Radius
+Mean Texture
+Mean Perimeter
+Mean Area
+Mean Smoothness
+Mean Compactness
+Mean Concavity
+Mean Symmetry
+Radius Error
+Texture Error
+Perimeter Error
+Area Error
+
+The target contains two classes:
+
+0 → Malignant
+1 → Benign
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab
+Jupyter Notebook
+🔄 Machine Learning Workflow
+Breast Cancer Dataset
+        ↓
+Data Loading
+        ↓
+Data Exploration
+        ↓
+Data Cleaning
+        ↓
+Feature Selection
+        ↓
+Train/Test Split
+        ↓
+Feature Scaling
+        ↓
+KNN Model
+        ↓
+Model Training
+        ↓
+Prediction
+        ↓
+Model Evaluation
+        ↓
+K Value Comparison
+        ↓
+Final Model
+⚙️ Important Steps
+1. Data Loading
+
+The dataset is loaded using Scikit-learn.
+
+2. Train/Test Split
+
+The dataset is divided into:
+
+Training data — 80%
+Testing data — 20%
+3. Feature Scaling
+
+KNN uses distances to find neighboring points, so feature scaling is important.
+
+StandardScaler is used to standardize the features.
+
+4. Model Training
+
+A KNN classifier is trained using:
+
+KNeighborsClassifier(n_neighbors=5)
+5. K Value Testing
+
+The project tests different K values from 1 to 15 and compares their accuracy.
+
+This helps understand how the choice of K can influence model performance.
+
+📈 Model Evaluation
+
+The model is evaluated using:
+
+Accuracy Score
+Precision
+Recall
+F1-Score
+Classification Report
+Confusion Matrix
+
+The project also generates a graph showing:
+
+K Value vs Accuracy
+
+This helps identify a suitable K value for the model.
+
+📊 Visualizations
+
+The project includes:
+
+Target Distribution
+
+Shows the distribution of malignant and benign samples.
+
+Confusion Matrix
+
+Shows:
+
+Actual Class
+     ↓
+Predicted Class
+
+and helps understand correct and incorrect predictions.
+
+K Value vs Accuracy
+
+Shows how model accuracy changes with different K values.
+
+🔮 Example Prediction
+
+The trained model can predict the class of a new sample based on its feature values.
+
+Example output:
+
+Predicted Class: Benign
+📚 What I Learned
+
+Through this project, I learned:
+
+What KNN is
+How KNN performs classification
+The importance of feature scaling
+How distance-based algorithms work
+How to select a suitable K value
+Train/test splitting
+Model evaluation
+Confusion matrix
+Classification metrics
+Comparing model performance for different K values
+
