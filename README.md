@@ -441,3 +441,245 @@ Confusion matrix
 Classification metrics
 Comparing model performance for different K values
 
+
+
+🍷 Day 05 — Wine Classification using Random Forest
+📌 Project Overview
+
+As part of my 30-Day Machine Learning Journey, Day 5 focuses on Supervised Learning – Classification.
+
+In this project, I built a Wine Classification model using the Random Forest Classifier from Scikit-learn.
+
+The model learns from chemical properties of wine samples and predicts which wine class a sample belongs to.
+
+🎯 Objective
+
+The main objectives of this project are:
+
+Understand the Random Forest Classification algorithm
+Load and explore a real-world dataset
+Perform data preprocessing
+Split data into training and testing sets
+Apply feature scaling
+Train a Random Forest model
+Evaluate classification performance
+Analyze feature importance
+Predict the class of a new wine sample
+🤖 Machine Learning Concept
+Supervised Learning
+
+Supervised Learning uses labeled data to learn the relationship between input features and output classes.
+
+Classification
+
+Classification predicts a categorical output.
+
+For this project:
+
+Input: Chemical properties of wine
+Output: Wine class
+
+🌳 Algorithm — Random Forest
+
+Random Forest is an ensemble machine learning algorithm that combines multiple decision trees.
+
+Instead of relying on a single decision tree, Random Forest creates many trees and combines their predictions to produce a more robust result.
+
+Advantages
+Good classification performance
+Reduces overfitting compared with a single decision tree
+Handles multiple features
+Provides feature importance
+Works well on many structured datasets
+📊 Dataset
+
+The project uses the built-in Wine Dataset available in Scikit-learn.
+
+Dataset Information
+Samples: 178
+Features: 13
+Classes: 3
+Problem Type: Multi-class Classification
+Wine Classes
+
+The dataset contains three different wine classes:
+
+Class 0
+Class 1
+Class 2
+
+The dataset features represent chemical properties such as:
+
+Alcohol
+Malic acid
+Ash
+Alcalinity of ash
+Magnesium
+Total phenols
+Flavanoids
+Nonflavanoid phenols
+Proanthocyanins
+Color intensity
+Hue
+OD280/OD315 of diluted wines
+Proline
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab / Jupyter Notebook
+🔄 Project Workflow
+Load Wine Dataset
+       ↓
+Explore Dataset
+       ↓
+Check Missing Values
+       ↓
+Data Visualization
+       ↓
+Train-Test Split
+       ↓
+Feature Scaling
+       ↓
+Random Forest Model
+       ↓
+Model Training
+       ↓
+Prediction
+       ↓
+Model Evaluation
+       ↓
+Feature Importance
+       ↓
+New Wine Prediction
+📈 Data Exploration
+
+The project performs:
+
+Dataset shape analysis
+Dataset information
+Missing-value checking
+Statistical analysis
+Target class distribution
+Feature correlation analysis
+⚙️ Data Preprocessing
+
+The dataset is divided into:
+
+80% Training Data
+20% Testing Data
+
+The data is split using:
+
+train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+Feature scaling is performed using:
+
+StandardScaler()
+🌲 Random Forest Model
+
+The model is created using:
+
+RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+The model contains 100 decision trees whose predictions are combined to classify the wine samples.
+
+📊 Model Evaluation
+
+The model is evaluated using:
+
+Accuracy
+
+Measures the percentage of correctly classified samples.
+
+Classification Report
+
+Provides:
+
+Precision
+Recall
+F1-score
+Support
+Confusion Matrix
+
+Shows the relationship between:
+
+Actual classes
+Predicted classes
+🔍 Feature Importance
+
+Random Forest provides an important advantage: it can estimate the importance of each feature.
+
+The project visualizes feature importance to understand which chemical properties contribute most to the classification decision.
+
+📊 Visualizations
+
+The project includes:
+
+Wine Class Distribution
+Feature Correlation Heatmap
+Confusion Matrix
+Random Forest Feature Importance
+
+These visualizations make it easier to understand the dataset and model performance.
+
+🔮 New Wine Prediction
+
+A wine sample from the dataset is passed to the trained model to demonstrate prediction.
+
+The model predicts:
+
+Predicted Wine Class: ...
+
+Prediction probabilities are also calculated for each wine class.
+
+📁 Project Structure
+Day-05-Random-Forest-Wine/
+│
+├── Random_Forest_Wine_Classification.ipynb
+├── random_forest_wine_predictions.csv
+└── README.md
+▶️ How to Run
+1. Clone the Repository
+git clone https://github.com/YOUR_USERNAME/machine-learning-daily-series.git
+2. Open the Day 5 Folder
+cd machine-learning-daily-series/Day-05-Random-Forest-Wine
+3. Install Required Libraries
+pip install numpy pandas matplotlib seaborn scikit-learn
+4. Run the Notebook
+
+Open:
+
+Random_Forest_Wine_Classification.ipynb
+
+You can run it using:
+
+Google Colab
+Jupyter Notebook
+VS Code
+📌 Key Learning Outcomes
+
+Through this project, I learned:
+
+How Random Forest works
+How ensemble learning improves classification
+How to preprocess a dataset
+How to split data into training and testing sets
+How feature scaling works
+How to evaluate a classification model
+How to interpret a confusion matrix
+How to analyze feature importance
+How to generate prediction probabilities
+
