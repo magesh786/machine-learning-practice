@@ -683,3 +683,261 @@ How to interpret a confusion matrix
 How to analyze feature importance
 How to generate prediction probabilities
 
+🧠 Day 06 — Breast Cancer Classification using SVM
+📌 Project Overview
+
+Welcome to Day 6 of my 30-Day Machine Learning Journey.
+
+In this project, I explored Support Vector Machine (SVM), a powerful supervised machine learning algorithm used for classification.
+
+I used the Breast Cancer dataset available in Scikit-learn to build a classification model that predicts whether a sample belongs to the malignant or benign class.
+
+⚠️ This project is for educational purposes only and should not be used for medical diagnosis.
+
+🎯 Objective
+
+The objectives of this project are:
+
+Understand Support Vector Machine
+Perform binary classification
+Preprocess the dataset
+Apply feature scaling
+Train an SVM model
+Evaluate model performance
+Compare different SVM kernels
+Generate predictions
+Analyze the confusion matrix
+🤖 Machine Learning Concept
+Supervised Learning
+
+Supervised learning uses labeled data to train a machine learning model.
+
+In this project:
+
+Input: Measurements of cell nuclei
+Output: Cancer classification
+
+Classification
+
+The model performs binary classification.
+
+The two target classes are:
+
+Malignant
+Benign
+📐 Algorithm — Support Vector Machine
+
+Support Vector Machine (SVM) is a supervised learning algorithm that finds an optimal decision boundary between different classes.
+
+SVM attempts to maximize the margin between classes while correctly classifying the training samples.
+
+Important SVM Parameters
+SVC(
+    kernel="rbf",
+    C=1.0,
+    gamma="scale"
+)
+Kernel Types Tested
+
+The project compares:
+
+Linear
+Polynomial
+RBF
+Sigmoid
+📊 Dataset
+
+The project uses the Breast Cancer Wisconsin Diagnostic dataset available through Scikit-learn.
+
+Dataset Information
+Samples: 569
+Features: 30
+Classes: 2
+Problem Type: Binary Classification
+Classes
+Malignant
+Benign
+
+The features describe characteristics of cell nuclei extracted from digitized images.
+
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab
+Jupyter Notebook
+🔄 Project Workflow
+Load Dataset
+     ↓
+Explore Dataset
+     ↓
+Check Missing Values
+     ↓
+Visualize Target Distribution
+     ↓
+Train-Test Split
+     ↓
+Feature Scaling
+     ↓
+Create SVM Model
+     ↓
+Train Model
+     ↓
+Make Predictions
+     ↓
+Evaluate Model
+     ↓
+Compare Kernels
+     ↓
+New Sample Prediction
+⚙️ Data Preprocessing
+
+The dataset is divided into:
+
+80% Training Data
+20% Testing Data
+
+The split uses:
+
+train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+Because SVM is sensitive to feature scale, StandardScaler is applied before training.
+
+scaler = StandardScaler()
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+🧠 SVM Model
+
+The primary model uses the RBF kernel:
+
+SVC(
+    kernel="rbf",
+    C=1.0,
+    gamma="scale",
+    probability=True
+)
+
+The model is trained using the scaled training data.
+
+📊 Model Evaluation
+
+The model is evaluated using:
+
+Accuracy
+
+Measures the percentage of correctly classified samples.
+
+Precision
+
+Measures how many predicted positive samples were actually positive.
+
+Recall
+
+Measures how many actual positive samples were correctly identified.
+
+F1-Score
+
+Combines precision and recall into a single metric.
+
+Confusion Matrix
+
+Shows:
+
+Actual class
+Predicted class
+Correct predictions
+Incorrect predictions
+🔬 Kernel Comparison
+
+One important part of this project is comparing different SVM kernels.
+
+The following kernels are tested:
+
+Kernel	Description
+Linear	Uses a linear decision boundary
+Polynomial	Uses polynomial transformation
+RBF	Captures non-linear relationships
+Sigmoid	Uses a sigmoid-based transformation
+
+The accuracy of each kernel is displayed using a bar chart.
+
+📈 Visualizations
+
+The project includes:
+
+Class Distribution
+SVM Confusion Matrix
+Kernel Accuracy Comparison
+
+These visualizations help understand the dataset and model performance.
+
+🔮 New Sample Prediction
+
+A sample is passed through the trained SVM model.
+
+The model returns the predicted class and prediction probabilities.
+
+Example:
+
+Predicted Class: benign
+
+The prediction is only an educational demonstration using the dataset.
+
+📁 Project Structure
+Day-06-SVM-Breast-Cancer/
+│
+├── SVM_Breast_Cancer_Classification.ipynb
+├── svm_breast_cancer_predictions.csv
+└── README.md
+▶️ How to Run
+1. Clone the Repository
+git clone https://github.com/YOUR_USERNAME/machine-learning-daily-series.git
+2. Open the Project
+cd machine-learning-daily-series/Day-06-SVM-Breast-Cancer
+3. Install Libraries
+pip install numpy pandas matplotlib seaborn scikit-learn
+4. Run the Notebook
+
+Open:
+
+SVM_Breast_Cancer_Classification.ipynb
+
+You can run the notebook using:
+
+Google Colab
+Jupyter Notebook
+VS Code
+📌 Key Learning Outcomes
+
+From this project, I learned:
+
+What Support Vector Machine is
+How SVM performs classification
+Why feature scaling is important
+What kernels are
+Difference between linear and non-linear kernels
+How to evaluate classification models
+How to use confusion matrices
+How to compare different model configurations
+🚀 Future Improvements
+
+Future improvements could include:
+
+Hyperparameter tuning
+GridSearchCV
+Cross-validation
+ROC-AUC analysis
+Precision-Recall analysis
+Feature selection
+Comparing SVM with Random Forest, KNN and Logistic Regression
+Building a Streamlit interface
