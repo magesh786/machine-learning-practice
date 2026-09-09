@@ -941,3 +941,160 @@ Precision-Recall analysis
 Feature selection
 Comparing SVM with Random Forest, KNN and Logistic Regression
 Building a Streamlit interface
+
+👥 Day 07 — Customer Segmentation using K-Means
+📌 Project Overview
+
+Welcome to Day 7 of my 30-Day Machine Learning Journey.
+
+For Day 7, I moved from Supervised Learning to Unsupervised Learning.
+
+In this project, I built a Customer Segmentation system using K-Means Clustering.
+
+Instead of predicting a predefined target, the model groups customers based on similarities in their characteristics.
+
+🎯 Objective
+
+The main objectives are:
+
+Understand Unsupervised Learning
+Learn K-Means Clustering
+Group similar customers
+Apply feature scaling
+Find a suitable number of clusters
+Use the Elbow Method
+Use Silhouette Score
+Visualize customer clusters
+Analyze cluster characteristics
+Export clustering results
+🧠 Machine Learning Concept
+Unsupervised Learning
+
+Unlike supervised learning, unsupervised learning works with data where a target label is not provided.
+
+The model attempts to discover patterns, structures, or groups within the data.
+
+Clustering
+
+Clustering is an unsupervised learning technique that groups similar observations together.
+
+K-Means is one of the commonly used clustering algorithms. It assigns samples to clusters around centroids and attempts to minimize within-cluster variation.
+
+🤖 Algorithm — K-Means Clustering
+
+K-Means works by:
+
+Selecting the number of clusters K
+Initializing cluster centroids
+Assigning each sample to its nearest centroid
+Updating the centroids
+Repeating the process until the centroids stabilize
+
+The number of clusters must be specified when creating the K-Means model.
+
+📊 Project Dataset
+
+For this educational project, a customer dataset was created containing:
+
+Customer ID
+Age
+Annual Income
+Spending Score
+Features
+Feature	Description
+Age	Customer age
+Annual Income	Approximate annual income
+Spending Score	Customer spending behavior
+
+The dataset contains 200 customer records.
+
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab
+Jupyter Notebook
+🔄 Project Workflow
+Create Customer Dataset
+        ↓
+Explore Data
+        ↓
+Check Missing Values
+        ↓
+Select Features
+        ↓
+Feature Scaling
+        ↓
+Elbow Method
+        ↓
+Silhouette Score
+        ↓
+Select K
+        ↓
+Train K-Means
+        ↓
+Assign Clusters
+        ↓
+Visualize Clusters
+        ↓
+Analyze Cluster Centers
+        ↓
+Export Results
+⚙️ Feature Scaling
+
+K-Means uses distances between data points, so differences in feature scales can influence clustering.
+
+Therefore, the project uses StandardScaler before applying K-Means.
+
+scaler = StandardScaler()
+
+X_scaled = scaler.fit_transform(X)
+📐 Finding the Number of Clusters
+Elbow Method
+
+The Elbow Method calculates the model's inertia for different values of K.
+
+The resulting curve can help identify a point where adding additional clusters gives diminishing improvement.
+
+Scikit-learn describes inertia as the within-cluster sum-of-squares criterion.
+
+Silhouette Score
+
+The project also calculates the Silhouette Score.
+
+The score measures how well samples fit within their assigned clusters compared with neighboring clusters. Values closer to 1 generally indicate better separation.
+
+📊 Visualizations
+
+The project generates:
+
+Elbow Curve
+Silhouette Score Comparison
+Annual Income vs Spending Score
+Age vs Spending Score
+Cluster Size Distribution
+👥 Customer Segmentation
+
+After applying K-Means, every customer receives a cluster label.
+
+Example:
+
+Customer 1 → Cluster 0
+Customer 2 → Cluster 1
+Customer 3 → Cluster 2
+
+The actual interpretation of each cluster depends on the characteristics of its members.
+
+For example, a cluster may represent customers with:
+
+Higher income and higher spending
+Lower income and lower spending
+Moderate income and moderate spending
+📍 Cluster Centers
+
+K-Means calculates a centroid for every cluster.
+
+The project converts the scaled cluster centers back to the original feature scale to make them easier to interpret.
