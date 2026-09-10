@@ -1098,3 +1098,188 @@ Moderate income and moderate spending
 K-Means calculates a centroid for every cluster.
 
 The project converts the scaled cluster centers back to the original feature scale to make them easier to interpret.
+
+
+👥 Day 08 — Customer Segmentation using DBSCAN
+📌 Project Overview
+
+Welcome to Day 8 of my 30-Day Machine Learning Journey.
+
+In Day 7, I explored K-Means Clustering.
+
+For Day 8, I continued with Unsupervised Learning by exploring DBSCAN — Density-Based Spatial Clustering of Applications with Noise.
+
+DBSCAN groups points based on density and can identify points that do not belong to any cluster as noise.
+
+🎯 Objective
+
+The main objectives of this project are:
+
+Understand DBSCAN
+Learn density-based clustering
+Perform customer segmentation
+Apply feature scaling
+Understand eps
+Understand min_samples
+Detect noise and outliers
+Calculate Silhouette Score
+Visualize customer clusters
+Analyze cluster characteristics
+🧠 Machine Learning Concept
+Unsupervised Learning
+
+Unsupervised Learning discovers patterns or structures in data without predefined target labels.
+
+Density-Based Clustering
+
+DBSCAN identifies dense regions of data and separates them from sparse regions.
+
+Unlike K-Means, DBSCAN does not require the number of clusters to be specified beforehand.
+
+🤖 Algorithm — DBSCAN
+
+DBSCAN uses two important parameters:
+
+eps
+
+Defines the maximum distance for two points to be considered neighbors.
+
+min_samples
+
+Defines the minimum number of points required to form a dense region.
+
+The model used in this project is:
+
+DBSCAN(
+    eps=0.45,
+    min_samples=8
+)
+⭐ Important DBSCAN Feature — Noise Detection
+
+One of the major advantages of DBSCAN is its ability to identify noise or outlier points.
+
+DBSCAN represents noise using:
+
+Cluster = -1
+
+Therefore, points labeled -1 in this project are treated as detected outliers.
+
+📊 Dataset
+
+This educational project uses a generated customer dataset containing:
+
+Customer ID
+Age
+Annual Income
+Spending Score
+
+Additional unusual customer records are included to demonstrate DBSCAN's ability to identify potential outliers.
+
+Features Used
+Feature	Description
+Age	Customer age
+Annual Income	Annual income
+Spending Score	Customer spending behavior
+
+Customer_ID is used only as an identifier and is not used for clustering.
+
+🛠️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab
+Jupyter Notebook
+🔄 Project Workflow
+Create Customer Dataset
+        ↓
+Explore Data
+        ↓
+Check Missing Values
+        ↓
+Select Features
+        ↓
+Feature Scaling
+        ↓
+Create DBSCAN Model
+        ↓
+Perform Clustering
+        ↓
+Identify Noise
+        ↓
+Calculate Silhouette Score
+        ↓
+Visualize Clusters
+        ↓
+Analyze Clusters
+        ↓
+Export Results
+⚙️ Feature Scaling
+
+DBSCAN is distance-based, so feature scaling is important.
+
+The project uses StandardScaler:
+
+scaler = StandardScaler()
+
+X_scaled = scaler.fit_transform(X)
+
+This places the features on a comparable scale before clustering.
+
+🔍 DBSCAN Parameters
+eps
+
+Controls the neighborhood radius around each data point.
+
+min_samples
+
+Controls the minimum number of nearby samples required to form a dense region.
+
+Changing these parameters can significantly affect:
+
+Number of clusters
+Number of noise points
+Cluster structure
+📈 Visualizations
+
+The project generates:
+
+1. Original Customer Data
+
+Shows the customer distribution before clustering.
+
+2. DBSCAN Customer Segmentation
+
+Shows customers grouped into DBSCAN clusters.
+
+3. Age vs Spending Score
+
+Shows how age and spending behavior relate to discovered clusters.
+
+4. Cluster Distribution
+
+Shows the number of customers in each cluster.
+
+📊 Silhouette Score
+
+The project calculates the Silhouette Score for non-noise points when at least two clusters are available.
+
+A higher Silhouette Score generally indicates better separation between clusters.
+
+🚨 Outlier Detection
+
+DBSCAN identifies noise points using the cluster label:
+
+-1
+
+The project extracts these customers separately:
+
+outlier_customers = df[
+    df["Cluster"] == -1
+]
+
+The detected outliers are saved as:
+
+dbscan_outliers.csv
