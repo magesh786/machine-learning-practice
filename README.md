@@ -1283,3 +1283,183 @@ outlier_customers = df[
 The detected outliers are saved as:
 
 dbscan_outliers.csv
+
+Day 9 - PCA Wine Dataset Dimensionality Reduction
+📌 Project Overview
+
+This project demonstrates Principal Component Analysis (PCA) using the Wine dataset from Scikit-learn.
+
+PCA is a dimensionality-reduction technique that transforms a dataset with many features into a smaller number of principal components while preserving as much important information as possible.
+
+In this project, the original Wine dataset contains 13 features, which are transformed into 2 principal components for visualization and analysis.
+
+🎯 Objectives
+Understand Principal Component Analysis
+Perform feature scaling
+Reduce dimensionality using PCA
+Analyze explained variance
+Visualize high-dimensional data in 2D
+Understand PCA component loadings
+Compare original and reduced datasets
+Save PCA results for further analysis
+🧠 What is PCA?
+
+Principal Component Analysis (PCA) is an unsupervised dimensionality-reduction technique.
+
+Instead of working with every original feature, PCA creates new variables called Principal Components.
+
+The first principal component captures the maximum possible variance in the data.
+
+The second principal component captures the maximum remaining variance while being independent of the first component.
+
+PCA Flow
+Original Dataset
+       ↓
+Feature Scaling
+       ↓
+Calculate Principal Components
+       ↓
+Rank Components by Variance
+       ↓
+Select Important Components
+       ↓
+Reduced Dataset
+       ↓
+2D Visualization
+📊 Dataset
+
+The project uses the built-in Wine dataset from Scikit-learn.
+
+Dataset characteristics
+Number of samples: 178
+Original features: 13
+Classes: 3
+Target: Wine class
+Example features
+Alcohol
+Malic acid
+Ash
+Magnesium
+Total phenols
+Flavanoids
+Color intensity
+Hue
+Proline
+⚙️ Technologies Used
+Python
+NumPy
+Pandas
+Matplotlib
+Seaborn
+Scikit-learn
+Google Colab / Jupyter Notebook
+🔬 Project Workflow
+Step 1 — Load Dataset
+
+The Wine dataset is loaded using:
+
+from sklearn.datasets import load_wine
+Step 2 — Feature Selection
+
+The 13 numerical features are selected for PCA.
+
+Step 3 — Feature Scaling
+
+StandardScaler is used because PCA is sensitive to differences in feature scales.
+
+StandardScaler()
+Step 4 — Apply PCA
+
+PCA is first applied using all components to understand the explained variance.
+
+Then PCA is performed with:
+
+PCA(n_components=2)
+Step 5 — Explained Variance
+
+The explained variance ratio tells us how much information is captured by each principal component.
+
+Step 6 — Visualization
+
+The 13-dimensional dataset is transformed into two dimensions and visualized using a scatter plot.
+
+Step 7 — Feature Loadings
+
+PCA loadings are analyzed to understand which original features contribute strongly to each principal component.
+
+📈 Important Concepts
+Explained Variance
+
+Explained variance represents how much of the dataset's information is captured by each principal component.
+
+Cumulative Explained Variance
+
+Cumulative variance shows the total information retained when multiple components are combined.
+
+Principal Components
+
+Principal components are new transformed features created from combinations of the original features.
+
+Feature Loadings
+
+Loadings indicate the contribution of original features to each principal component.
+
+📊 Visualizations
+
+This project generates:
+
+Cumulative explained variance plot
+PCA 2D scatter plot
+Principal Component 1 feature contribution plot
+📁 Project Structure
+Day-09-PCA-Wine-Dimensionality-Reduction/
+│
+├── PCA_Wine_Dimensionality_Reduction.ipynb
+├── wine_pca_results.csv
+├── pca_feature_loadings.csv
+├── pca_explained_variance.csv
+└── README.md
+💾 Output Files
+wine_pca_results.csv
+
+Contains:
+
+Principal Component 1
+Principal Component 2
+Wine Target Class
+pca_feature_loadings.csv
+
+Contains the contribution of each original feature to the two principal components.
+
+pca_explained_variance.csv
+
+Contains:
+
+Principal component number
+Explained variance
+Cumulative variance
+🔄 Original vs Reduced Dataset
+Dataset	Features
+Original Wine Dataset	13
+PCA Reduced Dataset	2
+
+PCA allows the 13-dimensional data to be represented in a 2-dimensional space, making visualization and further analysis easier.
+
+💡 Real-World Applications
+
+PCA is commonly used in:
+
+Data visualization
+Image processing
+Face recognition
+Genomics
+Financial analysis
+Anomaly detection
+Machine learning preprocessing
+Feature engineering
+High-dimensional data analysis
+🆚 PCA vs K-Means vs DBSCAN
+Technique	Main Purpose
+K-Means	Cluster data into groups
+DBSCAN	Density-based clustering and noise detection
+PCA	Reduce the number of dimensions
