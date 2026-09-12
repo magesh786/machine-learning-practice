@@ -1463,3 +1463,311 @@ Technique	Main Purpose
 K-Means	Cluster data into groups
 DBSCAN	Density-based clustering and noise detection
 PCA	Reduce the number of dimensions
+
+
+# Day 10 - Gradient Boosting Classification
+
+## 📌 Project Overview
+
+This project demonstrates **Gradient Boosting Classification** using the Breast Cancer dataset from Scikit-learn.
+
+Gradient Boosting is an ensemble machine learning technique that builds multiple decision trees sequentially. Each new tree attempts to improve the errors made by the previous trees.
+
+The model is trained to classify samples into two classes: **malignant** and **benign**.
+
+---
+
+## 🎯 Objectives
+
+* Understand Gradient Boosting
+* Learn ensemble learning
+* Perform binary classification
+* Split data into training and testing sets
+* Apply feature scaling
+* Train a Gradient Boosting classifier
+* Evaluate model accuracy
+* Analyze the confusion matrix
+* Study feature importance
+* Generate prediction probabilities
+
+---
+
+## 🧠 What is Gradient Boosting?
+
+Gradient Boosting is an **ensemble learning algorithm**.
+
+Instead of depending on one decision tree, Gradient Boosting creates multiple trees sequentially.
+
+Each new tree focuses on correcting the errors made by previous trees.
+
+### Basic Workflow
+
+```text
+Dataset
+   ↓
+Train First Decision Tree
+   ↓
+Calculate Errors
+   ↓
+Train Next Tree
+   ↓
+Correct Previous Errors
+   ↓
+Repeat Process
+   ↓
+Combine Weak Learners
+   ↓
+Final Prediction
+```
+
+---
+
+## 📊 Dataset
+
+The project uses the built-in Breast Cancer dataset from Scikit-learn.
+
+### Dataset Characteristics
+
+* Samples: 569
+* Features: 30
+* Classes: 2
+* Classification Type: Binary Classification
+
+### Classes
+
+```text
+0 → Malignant
+1 → Benign
+```
+
+The dataset contains numerical measurements related to cell characteristics.
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Google Colab / Jupyter Notebook
+
+---
+
+## 🔬 Machine Learning Workflow
+
+### 1. Load Dataset
+
+The Breast Cancer dataset is loaded using:
+
+```python
+from sklearn.datasets import load_breast_cancer
+```
+
+### 2. Data Exploration
+
+The project checks:
+
+* Dataset shape
+* Data types
+* Missing values
+* Statistical summary
+* Target distribution
+
+### 3. Train-Test Split
+
+The dataset is divided into:
+
+* 80% training data
+* 20% testing data
+
+### 4. Feature Scaling
+
+StandardScaler is used to standardize the feature values.
+
+### 5. Model Training
+
+GradientBoostingClassifier is used:
+
+```python
+GradientBoostingClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    random_state=42
+)
+```
+
+### 6. Prediction
+
+The trained model predicts the class of unseen test samples.
+
+### 7. Evaluation
+
+The model is evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion Matrix
+
+### 8. Feature Importance
+
+Gradient Boosting provides feature importance values that help identify which features contributed most to the predictions.
+
+---
+
+## 📈 Model Parameters
+
+| Parameter     |             Value |
+| ------------- | ----------------: |
+| Algorithm     | Gradient Boosting |
+| n_estimators  |               100 |
+| learning_rate |               0.1 |
+| max_depth     |                 3 |
+| random_state  |                42 |
+| Test Size     |               20% |
+
+---
+
+## 📊 Visualizations
+
+The project generates:
+
+1. Target distribution
+2. Confusion matrix
+3. Top 15 feature importance chart
+
+---
+
+## 📁 Project Structure
+
+```text
+Day-10-Gradient-Boosting-Breast-Cancer/
+│
+├── Gradient_Boosting_Breast_Cancer.ipynb
+├── gradient_boosting_breast_cancer_predictions.csv
+├── gradient_boosting_feature_importance.csv
+├── gradient_boosting_model_summary.csv
+└── README.md
+```
+
+---
+
+## 💾 Output Files
+
+### `gradient_boosting_breast_cancer_predictions.csv`
+
+Contains:
+
+* Actual class
+* Predicted class
+* Malignant probability
+* Benign probability
+
+### `gradient_boosting_feature_importance.csv`
+
+Contains the importance score of each feature.
+
+### `gradient_boosting_model_summary.csv`
+
+Contains the main model configuration and evaluation information.
+
+---
+
+## 🧠 Important Concepts Learned
+
+### Ensemble Learning
+
+Combining multiple models to create a stronger predictive model.
+
+### Weak Learners
+
+Simple models, such as shallow decision trees, that are combined to build a stronger model.
+
+### Sequential Learning
+
+Gradient Boosting builds trees one after another rather than independently.
+
+### Learning Rate
+
+Controls how much each new tree contributes to the final model.
+
+### Number of Estimators
+
+Controls the number of boosting stages or trees.
+
+### Feature Importance
+
+Shows the relative contribution of features to the model.
+
+---
+
+## 🆚 Gradient Boosting vs Random Forest
+
+| Feature         | Random Forest      | Gradient Boosting             |
+| --------------- | ------------------ | ----------------------------- |
+| Tree Training   | Parallel           | Sequential                    |
+| Main Idea       | Reduce variance    | Correct errors                |
+| Learning        | Independent trees  | Dependent trees               |
+| Ensemble        | Bagging            | Boosting                      |
+| Common Strength | Robust performance | Strong predictive performance |
+
+---
+
+## 🌍 Real-World Applications
+
+Gradient Boosting is commonly used for:
+
+* Fraud detection
+* Customer churn prediction
+* Credit risk analysis
+* Medical classification
+* Recommendation systems
+* Sales prediction
+* Customer behavior prediction
+* Financial prediction
+* Ranking problems
+
+---
+
+## 🚀 Future Improvements
+
+* Tune hyperparameters using GridSearchCV
+* Compare Gradient Boosting with Random Forest
+* Try XGBoost
+* Try LightGBM
+* Try CatBoost
+* Perform cross-validation
+* Optimize precision and recall
+* Build a web application for predictions
+
+---
+
+## 📚 Learning Outcome
+
+After completing Day 10, I learned:
+
+* What ensemble learning means
+* How Gradient Boosting works
+* Sequential decision-tree learning
+* Learning rate
+* Number of estimators
+* Model evaluation
+* Confusion matrix
+* Feature importance
+* Prediction probabilities
+
+---
+
+## 🏁 Conclusion
+
+Day 10 introduced **Gradient Boosting**, an important ensemble learning algorithm for classification.
+
+The project demonstrated how multiple decision trees can be combined sequentially to build a powerful predictive model.
+
+**Learn → Build → Analyze → Improve → Share**
+
