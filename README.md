@@ -1771,3 +1771,354 @@ The project demonstrated how multiple decision trees can be combined sequentiall
 
 **Learn → Build → Analyze → Improve → Share**
 
+
+# Day 11 - AdaBoost Classification
+
+## 📌 Project Overview
+
+This project demonstrates **AdaBoost Classification** using the Breast Cancer dataset from Scikit-learn.
+
+AdaBoost, short for **Adaptive Boosting**, is an ensemble machine learning algorithm that combines multiple weak learners to create a stronger classifier.
+
+In this project, small Decision Trees are used as weak learners and combined sequentially to classify breast cancer samples.
+
+---
+
+## 🎯 Objectives
+
+* Understand AdaBoost
+* Learn ensemble learning
+* Understand weak learners
+* Perform binary classification
+* Train an AdaBoost classifier
+* Evaluate classification performance
+* Analyze feature importance
+* Generate prediction probabilities
+* Study the effect of the number of estimators
+
+---
+
+## 🧠 What is AdaBoost?
+
+**AdaBoost (Adaptive Boosting)** is an ensemble learning technique.
+
+It starts with a simple model and gives more attention to incorrectly classified samples during subsequent boosting stages.
+
+The process continues by adding weak learners that focus on improving previous mistakes.
+
+### AdaBoost Workflow
+
+```text
+Dataset
+   ↓
+Create Initial Weak Learner
+   ↓
+Make Predictions
+   ↓
+Identify Incorrect Predictions
+   ↓
+Increase Focus on Difficult Samples
+   ↓
+Train Next Weak Learner
+   ↓
+Repeat
+   ↓
+Combine Weak Learners
+   ↓
+Final Prediction
+```
+
+---
+
+## 📊 Dataset
+
+The project uses the built-in **Breast Cancer Wisconsin dataset** available through Scikit-learn.
+
+### Dataset Characteristics
+
+* Samples: 569
+* Features: 30
+* Classes: 2
+* Problem Type: Binary Classification
+
+### Target Classes
+
+```text
+0 → Malignant
+1 → Benign
+```
+
+The dataset contains numerical measurements describing characteristics of cell nuclei.
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Google Colab
+* Jupyter Notebook
+
+---
+
+## 🔬 Machine Learning Workflow
+
+### 1. Load Dataset
+
+The dataset is loaded using:
+
+```python
+from sklearn.datasets import load_breast_cancer
+```
+
+### 2. Explore Data
+
+The project examines:
+
+* Dataset shape
+* Data types
+* Missing values
+* Statistical summary
+* Target distribution
+
+### 3. Train-Test Split
+
+The dataset is divided into:
+
+* 80% training data
+* 20% testing data
+
+### 4. Feature Scaling
+
+StandardScaler is used to standardize the numerical features.
+
+### 5. Create Base Learner
+
+A shallow Decision Tree is used as the weak learner.
+
+```python
+DecisionTreeClassifier(
+    max_depth=1,
+    random_state=42
+)
+```
+
+### 6. Create AdaBoost Model
+
+```python
+AdaBoostClassifier(
+    estimator=base_model,
+    n_estimators=100,
+    learning_rate=0.5,
+    random_state=42
+)
+```
+
+### 7. Train Model
+
+The AdaBoost model learns from the training dataset.
+
+### 8. Make Predictions
+
+The trained model predicts the classes of the test samples.
+
+### 9. Evaluate Model
+
+The model is evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion Matrix
+
+### 10. Feature Importance
+
+Feature importance is analyzed to understand which features contribute more to the model.
+
+---
+
+## 📈 Model Parameters
+
+| Parameter      |               Value |
+| -------------- | ------------------: |
+| Algorithm      | AdaBoost Classifier |
+| Base Estimator |       Decision Tree |
+| Tree Depth     |                   1 |
+| n_estimators   |                 100 |
+| learning_rate  |                 0.5 |
+| Test Size      |                 20% |
+| random_state   |                  42 |
+
+---
+
+## 🔍 Important AdaBoost Concepts
+
+### Weak Learner
+
+A weak learner is a relatively simple model that performs better than random guessing.
+
+In this project, a shallow Decision Tree is used.
+
+### Boosting
+
+Boosting combines multiple weak learners to create a stronger model.
+
+### Adaptive Learning
+
+AdaBoost gives more attention to samples that previous learners classified incorrectly.
+
+### n_estimators
+
+Controls the number of weak learners used by the AdaBoost model.
+
+### learning_rate
+
+Controls the contribution of each weak learner to the final model.
+
+---
+
+## 📊 Visualizations
+
+This project generates:
+
+1. Target class distribution
+2. Confusion matrix
+3. Feature importance chart
+4. Number of estimators vs accuracy graph
+
+---
+
+## 📁 Project Structure
+
+```text
+Day-11-AdaBoost-Breast-Cancer/
+│
+├── AdaBoost_Breast_Cancer.ipynb
+├── adaboost_breast_cancer_predictions.csv
+├── adaboost_feature_importance.csv
+├── adaboost_estimator_experiment.csv
+├── adaboost_model_summary.csv
+└── README.md
+```
+
+---
+
+## 💾 Output Files
+
+### `adaboost_breast_cancer_predictions.csv`
+
+Contains:
+
+* Actual class
+* Predicted class
+* Malignant probability
+* Benign probability
+* Actual label
+* Predicted label
+
+### `adaboost_feature_importance.csv`
+
+Contains feature importance values for all 30 features.
+
+### `adaboost_estimator_experiment.csv`
+
+Contains accuracy results for different numbers of estimators.
+
+### `adaboost_model_summary.csv`
+
+Contains the main model configuration and accuracy.
+
+---
+
+## 🆚 AdaBoost vs Gradient Boosting
+
+| Feature          | AdaBoost                       | Gradient Boosting          |
+| ---------------- | ------------------------------ | -------------------------- |
+| Technique        | Boosting                       | Boosting                   |
+| Main Idea        | Focus on misclassified samples | Minimize prediction errors |
+| Weak Learners    | Usually shallow trees          | Usually decision trees     |
+| Learning         | Sequential                     | Sequential                 |
+| Common Parameter | n_estimators                   | n_estimators               |
+| Learning Rate    | Yes                            | Yes                        |
+
+---
+
+## 🌍 Real-World Applications
+
+AdaBoost can be applied to:
+
+* Fraud detection
+* Classification systems
+* Customer analysis
+* Medical classification
+* Face detection
+* Spam detection
+* Risk assessment
+* Anomaly detection
+
+---
+
+## 🚀 Future Improvements
+
+* Perform hyperparameter tuning
+* Compare AdaBoost with Gradient Boosting
+* Compare AdaBoost with Random Forest
+* Experiment with different weak learners
+* Apply cross-validation
+* Test different learning rates
+* Build a prediction web application
+
+---
+
+## 📚 Learning Outcomes
+
+After completing Day 11, I learned:
+
+* What AdaBoost means
+* What boosting is
+* What weak learners are
+* How AdaBoost learns sequentially
+* How incorrectly classified samples receive more attention
+* The role of `n_estimators`
+* The role of `learning_rate`
+* Feature importance
+* Classification evaluation
+* Confusion matrix
+* Prediction probabilities
+
+---
+
+## 📅 Machine Learning Journey
+
+```text
+Day 1  → Logistic Regression
+Day 2  → Linear Regression
+Day 3  → Decision Tree
+Day 4  → KNN
+Day 5  → Random Forest
+Day 6  → SVM
+Day 7  → K-Means
+Day 8  → DBSCAN
+Day 9  → PCA
+Day 10 → Gradient Boosting
+Day 11 → AdaBoost
+```
+
+---
+
+## 🏁 Conclusion
+
+Day 11 introduced **AdaBoost**, an important ensemble learning algorithm.
+
+The project demonstrated how multiple weak Decision Tree learners can be combined sequentially to create a stronger classification model.
+
+This project also helped me understand the relationship between **weak learners, boosting, learning rate, estimators, feature importance, and classification performance**.
+
+**Learn → Build → Analyze → Improve → Share**
+
+
