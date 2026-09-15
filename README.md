@@ -2516,6 +2516,431 @@ The project demonstrated how sequential decision trees can be combined to create
 This project builds on the concepts learned in **Gradient Boosting and AdaBoost** and takes the ensemble-learning section of the 30-day journey one step further.
 
 **Learn → Build → Analyze → Improve → Share**
+# Day 13 - Naive Bayes Spam Detection
+
+## 📌 Project Overview
+
+This project demonstrates **Text Classification using Multinomial Naive Bayes**.
+
+The goal is to classify messages into two categories:
+
+* **Spam**
+* **Ham (Not Spam)**
+
+The project combines **TF-IDF text vectorization** with the **Multinomial Naive Bayes** algorithm.
+
+This introduces Natural Language Processing (NLP) concepts into the 30-day Machine Learning journey.
+
+---
+
+## 🎯 Objectives
+
+The main objectives of this project are:
+
+* Understand Naive Bayes
+* Learn text classification
+* Understand NLP preprocessing
+* Convert text into numerical features
+* Use TF-IDF vectorization
+* Train a Multinomial Naive Bayes classifier
+* Evaluate classification performance
+* Analyze important spam-related words
+* Predict custom messages
+
+---
+
+## 🧠 What is Naive Bayes?
+
+Naive Bayes is a probabilistic machine learning algorithm based on **Bayes' theorem**.
+
+It assumes that features contribute independently to the outcome given the class.
+
+Despite this simplifying assumption, Naive Bayes performs very well for many text-classification problems.
+
+### Basic Workflow
+
+```text
+Text Dataset
+     ↓
+Text Preprocessing
+     ↓
+TF-IDF Vectorization
+     ↓
+Numerical Feature Matrix
+     ↓
+Naive Bayes Model
+     ↓
+Training
+     ↓
+Prediction
+     ↓
+Spam / Ham
+```
+
+---
+
+## 📱 Project Problem
+
+Spam messages can contain words such as:
+
+```text
+free
+prize
+winner
+cash
+reward
+claim
+offer
+```
+
+Normal messages may contain words such as:
+
+```text
+project
+meeting
+assignment
+class
+report
+exam
+```
+
+The model learns patterns from these words and predicts whether a new message is likely to be spam or normal.
+
+---
+
+## 📊 Dataset
+
+For this learning project, a small text-message dataset was created containing examples of:
+
+* Spam messages
+* Normal messages
+
+### Classes
+
+```text
+0 → Ham
+1 → Spam
+```
+
+The dataset is intended for educational demonstration of the complete NLP + machine-learning workflow.
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* TF-IDF
+* Multinomial Naive Bayes
+* Google Colab
+* Jupyter Notebook
+
+---
+
+## 🔬 Machine Learning Workflow
+
+### 1. Create Dataset
+
+Text messages and their corresponding labels are stored in a Pandas DataFrame.
+
+### 2. Encode Labels
+
+The labels are converted into numerical values:
+
+```python
+ham  → 0
+spam → 1
+```
+
+### 3. Train-Test Split
+
+The dataset is divided into:
+
+* 80% training data
+* 20% testing data
+
+### 4. TF-IDF Vectorization
+
+Text cannot be directly provided to most machine-learning algorithms.
+
+TF-IDF converts text into numerical feature vectors.
+
+```python
+TfidfVectorizer()
+```
+
+### 5. Train Naive Bayes
+
+The Multinomial Naive Bayes classifier is trained using the TF-IDF features.
+
+```python
+MultinomialNB()
+```
+
+### 6. Prediction
+
+The model predicts whether unseen messages are:
+
+* Spam
+* Ham
+
+### 7. Evaluation
+
+The model is evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion Matrix
+
+### 8. Custom Predictions
+
+New messages are provided to the trained model to demonstrate real-time classification.
+
+---
+
+## 🔤 What is TF-IDF?
+
+**TF-IDF** stands for:
+
+> Term Frequency — Inverse Document Frequency
+
+It converts text into numerical values based on the importance of words within documents.
+
+Words that are important to a particular message receive higher weights.
+
+### TF-IDF Process
+
+```text
+Text
+ ↓
+Tokenization
+ ↓
+Calculate Term Frequency
+ ↓
+Calculate Inverse Document Frequency
+ ↓
+Generate Numerical Vectors
+```
+
+---
+
+## 🧠 Why Multinomial Naive Bayes?
+
+Multinomial Naive Bayes is particularly useful for text classification because it works well with word-frequency or TF-IDF based features.
+
+Common applications include:
+
+* Spam detection
+* Sentiment analysis
+* News classification
+* Document classification
+* Email filtering
+
+---
+
+## 📊 Model Evaluation
+
+The project evaluates the model using:
+
+### Accuracy
+
+Measures the percentage of correctly classified messages.
+
+### Precision
+
+Measures how many predicted spam messages were actually spam.
+
+### Recall
+
+Measures how many actual spam messages were correctly detected.
+
+### F1-Score
+
+Provides a balance between precision and recall.
+
+### Confusion Matrix
+
+Shows:
+
+```text
+True Negative
+False Positive
+False Negative
+True Positive
+```
+
+---
+
+## 🔍 Important Spam Words
+
+The project also calculates word scores to identify words that are strongly associated with spam messages.
+
+Examples may include:
+
+```text
+free
+prize
+claim
+reward
+cash
+winner
+offer
+```
+
+---
+
+## 📈 Visualizations
+
+The project generates:
+
+1. Spam vs Ham distribution
+2. Confusion matrix
+3. Important spam-word visualization
+
+---
+
+## 📁 Project Structure
+
+```text
+Day-13-Naive-Bayes-Spam-Detection/
+│
+├── Naive_Bayes_Spam_Detection.ipynb
+├── naive_bayes_spam_predictions.csv
+├── naive_bayes_custom_predictions.csv
+├── naive_bayes_word_importance.csv
+├── naive_bayes_model_summary.csv
+└── README.md
+```
+
+---
+
+## 💾 Output Files
+
+### `naive_bayes_spam_predictions.csv`
+
+Contains:
+
+* Original message
+* Actual class
+* Predicted class
+* Ham probability
+* Spam probability
+* Actual label
+* Predicted label
+
+### `naive_bayes_custom_predictions.csv`
+
+Contains predictions for manually entered messages.
+
+### `naive_bayes_word_importance.csv`
+
+Contains words ranked according to their association with spam.
+
+### `naive_bayes_model_summary.csv`
+
+Contains the main model information and accuracy.
+
+---
+
+## 🆚 Naive Bayes vs Previous Algorithms
+
+| Algorithm           | Main Application                   |
+| ------------------- | ---------------------------------- |
+| Logistic Regression | Classification                     |
+| Decision Tree       | Classification                     |
+| KNN                 | Classification                     |
+| Random Forest       | Ensemble Classification            |
+| SVM                 | Classification                     |
+| Gradient Boosting   | Ensemble Learning                  |
+| AdaBoost            | Boosting                           |
+| XGBoost             | Advanced Boosting                  |
+| Naive Bayes         | Probabilistic Classification / NLP |
+
+---
+
+## 🌍 Real-World Applications
+
+Naive Bayes is commonly used for:
+
+* Email spam filtering
+* SMS spam detection
+* Sentiment analysis
+* News categorization
+* Document classification
+* Text filtering
+* Customer feedback classification
+
+---
+
+## 🚀 Future Improvements
+
+* Use a larger real-world SMS spam dataset
+* Add text preprocessing
+* Remove punctuation
+* Apply stemming
+* Apply lemmatization
+* Compare CountVectorizer with TF-IDF
+* Compare Naive Bayes with Logistic Regression
+* Use n-grams
+* Perform hyperparameter tuning
+* Build a web-based spam detector
+
+---
+
+## 📅 Machine Learning Journey
+
+```text
+Day 1  → Logistic Regression
+Day 2  → Linear Regression
+Day 3  → Decision Tree
+Day 4  → KNN
+Day 5  → Random Forest
+Day 6  → SVM
+Day 7  → K-Means
+Day 8  → DBSCAN
+Day 9  → PCA
+Day 10 → Gradient Boosting
+Day 11 → AdaBoost
+Day 12 → XGBoost
+Day 13 → Naive Bayes
+```
+
+---
+
+## 📚 Learning Outcomes
+
+After completing Day 13, I learned:
+
+* What Naive Bayes is
+* Probabilistic classification
+* Multinomial Naive Bayes
+* Text classification
+* NLP fundamentals
+* TF-IDF
+* Vocabulary generation
+* Classification metrics
+* Confusion matrix
+* Prediction probabilities
+* Spam detection
+
+---
+
+## 🏁 Conclusion
+
+Day 13 introduced **Naive Bayes** and the fundamentals of text classification.
+
+Unlike the tree-based ensemble algorithms explored in the previous days, this project focuses on **Natural Language Processing and probabilistic machine learning**.
+
+By combining **TF-IDF and Multinomial Naive Bayes**, text messages can be converted into numerical representations and classified as spam or normal messages.
+
+**Learn → Build → Analyze → Improve → Share**
+
 
 
 
