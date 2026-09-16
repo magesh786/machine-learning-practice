@@ -2940,6 +2940,215 @@ Unlike the tree-based ensemble algorithms explored in the previous days, this pr
 By combining **TF-IDF and Multinomial Naive Bayes**, text messages can be converted into numerical representations and classified as spam or normal messages.
 
 **Learn → Build → Analyze → Improve → Share**
+# Day 14 - Sentiment Analysis using Logistic Regression and TF-IDF
+
+## 📌 Project Overview
+
+This project performs **Sentiment Analysis** on text reviews using **TF-IDF Vectorization** and **Logistic Regression**.
+
+The model classifies text into two categories:
+
+* Positive
+* Negative
+
+This project is part of my **30-Day Machine Learning Learning Series**.
+
+---
+
+## 🎯 Objectives
+
+* Understand basic Natural Language Processing (NLP)
+* Convert text into numerical features using TF-IDF
+* Apply Logistic Regression to text classification
+* Evaluate classification performance
+* Predict sentiment for new/custom messages
+* Identify important words/features influencing predictions
+
+---
+
+## 🧠 Machine Learning Concepts
+
+### 1. Natural Language Processing
+
+NLP allows computers to process and understand human language.
+
+### 2. TF-IDF
+
+TF-IDF stands for:
+
+**Term Frequency - Inverse Document Frequency**
+
+It converts text into numerical values based on the importance of words within documents.
+
+### 3. Logistic Regression
+
+Logistic Regression is a supervised machine learning algorithm commonly used for classification.
+
+In this project:
+
+```text
+Text → TF-IDF → Logistic Regression → Sentiment
+```
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* TF-IDF
+* Logistic Regression
+* Google Colab / Jupyter Notebook
+
+---
+
+## 📂 Project Structure
+
+```text
+Day-14-Sentiment-Analysis/
+│
+├── Sentiment_Analysis.ipynb
+├── sentiment_predictions.csv
+├── sentiment_custom_predictions.csv
+├── sentiment_feature_importance.csv
+├── sentiment_model_summary.csv
+└── README.md
+```
+
+---
+
+## 🔄 Workflow
+
+```text
+Dataset
+   ↓
+Train-Test Split
+   ↓
+TF-IDF Vectorization
+   ↓
+Logistic Regression
+   ↓
+Model Prediction
+   ↓
+Accuracy & Classification Report
+   ↓
+Confusion Matrix
+   ↓
+Custom Sentiment Prediction
+```
+
+---
+
+## 📊 Evaluation
+
+The model is evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion Matrix
+
+The notebook also generates prediction probabilities for each test message.
+
+---
+
+## 🔍 Feature Importance
+
+Logistic Regression coefficients are used to identify words/features that contribute toward positive or negative sentiment.
+
+Positive coefficient:
+
+```text
+Positive sentiment influence
+```
+
+Negative coefficient:
+
+```text
+Negative sentiment influence
+```
+
+---
+
+## 💾 Generated Files
+
+### `sentiment_predictions.csv`
+
+Contains test-set predictions and sentiment probabilities.
+
+### `sentiment_custom_predictions.csv`
+
+Contains predictions for manually entered messages.
+
+### `sentiment_feature_importance.csv`
+
+Contains TF-IDF features and their Logistic Regression coefficients.
+
+### `sentiment_model_summary.csv`
+
+Contains model configuration and performance information.
+
+---
+
+## 🚀 Future Improvements
+
+* Use a larger real-world review dataset
+* Add neutral sentiment
+* Perform advanced text preprocessing
+* Compare Logistic Regression with Naive Bayes and SVM
+* Use Word2Vec or embeddings
+* Experiment with transformer-based NLP models
+* Build a web application for real-time sentiment prediction
+
+---
+
+## 📚 Key Learning
+
+Day 14 helped me understand how **machine learning can work with human language**.
+
+The key pipeline learned today was:
+
+```text
+Text
+ ↓
+TF-IDF
+ ↓
+Machine Learning Model
+ ↓
+Classification
+```
+
+This provides a foundation for applications such as:
+
+* Product review analysis
+* Customer feedback analysis
+* Social media sentiment analysis
+* Opinion mining
+* Customer support analytics
+
+---
+
+## 👨‍💻 Author
+
+**Magesh L**
+
+B.E. Computer Science and Engineering
+
+Karpaga Vinayaga College of Engineering and Technology
+
+---
+
+## ⭐ 30-Day ML Series
+
+**Day 14 / 30 Completed**
+
+Continuing to learn, build, document, and share one machine learning concept every day.
+
 
 
 
