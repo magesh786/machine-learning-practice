@@ -3149,6 +3149,275 @@ Karpaga Vinayaga College of Engineering and Technology
 
 Continuing to learn, build, document, and share one machine learning concept every day.
 
+# Day 15 - Neural Network Classification using MLP
+
+## 📌 Project Overview
+
+This project demonstrates **Neural Network Classification** using the `MLPClassifier` from Scikit-learn.
+
+The **Breast Cancer Wisconsin dataset** is used to classify tumors into:
+
+* Malignant
+* Benign
+
+This project is part of my **30-Day Machine Learning Learning Series**.
+
+---
+
+## 🎯 Objectives
+
+* Understand the fundamentals of Artificial Neural Networks
+* Learn how an MLP classifier works
+* Understand input, hidden, and output layers
+* Apply feature scaling before neural network training
+* Learn about the ReLU activation function
+* Understand the Adam optimizer
+* Evaluate a neural network using classification metrics
+* Visualize the training loss curve
+
+---
+
+## 🧠 Machine Learning Concept
+
+### Multi-Layer Perceptron (MLP)
+
+An MLP is a type of feed-forward artificial neural network.
+
+The network used in this project contains:
+
+```text
+Input Layer
+    ↓
+64 Neurons
+    ↓
+32 Neurons
+    ↓
+Output Layer
+```
+
+### Architecture
+
+```text
+30 Input Features
+       ↓
+Hidden Layer 1
+64 Neurons
+ReLU
+       ↓
+Hidden Layer 2
+32 Neurons
+ReLU
+       ↓
+Output
+Malignant / Benign
+```
+
+---
+
+## 🔄 Workflow
+
+```text
+Breast Cancer Dataset
+        ↓
+Train-Test Split
+        ↓
+StandardScaler
+        ↓
+MLP Neural Network
+        ↓
+Model Training
+        ↓
+Prediction
+        ↓
+Accuracy
+        ↓
+Classification Report
+        ↓
+Confusion Matrix
+        ↓
+Loss Curve
+```
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* MLPClassifier
+* StandardScaler
+* Google Colab / Jupyter Notebook
+
+---
+
+## 📊 Dataset
+
+The project uses the built-in **Breast Cancer Wisconsin dataset** available through Scikit-learn.
+
+The dataset contains:
+
+* 569 samples
+* 30 numerical features
+* 2 target classes
+
+Target classes:
+
+```text
+0 → Malignant
+1 → Benign
+```
+
+---
+
+## ⚙️ Model Configuration
+
+```python
+MLPClassifier(
+    hidden_layer_sizes=(64, 32),
+    activation="relu",
+    solver="adam",
+    alpha=0.0001,
+    learning_rate_init=0.001,
+    max_iter=1000,
+    early_stopping=True
+)
+```
+
+### Important Parameters
+
+| Parameter            | Purpose                                                    |
+| -------------------- | ---------------------------------------------------------- |
+| `hidden_layer_sizes` | Defines neural network hidden layers                       |
+| `activation`         | Activation function                                        |
+| `solver`             | Optimization algorithm                                     |
+| `learning_rate_init` | Initial learning rate                                      |
+| `max_iter`           | Maximum training iterations                                |
+| `early_stopping`     | Stops training when validation performance stops improving |
+
+---
+
+## 📈 Evaluation Metrics
+
+The model is evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion Matrix
+* Training Loss
+
+The project also generates prediction probabilities.
+
+---
+
+## 📉 Loss Curve
+
+The training loss curve helps visualize how the neural network's loss changes during training.
+
+```text
+Higher Loss
+     │\
+     │ \
+     │  \
+     │   \
+     │    \____
+     │
+     └──────────────
+       Iterations
+```
+
+A decreasing loss generally indicates that the model is learning from the training data.
+
+---
+
+## 📂 Project Structure
+
+```text
+Day-15-Neural-Network-Classification/
+│
+├── Neural_Network_Classification.ipynb
+├── neural_network_predictions.csv
+├── neural_network_model_summary.csv
+├── neural_network_loss_curve.csv
+└── README.md
+```
+
+---
+
+## 💾 Generated Files
+
+### `neural_network_predictions.csv`
+
+Contains actual labels, predicted labels, and prediction probabilities.
+
+### `neural_network_model_summary.csv`
+
+Contains model configuration and performance information.
+
+### `neural_network_loss_curve.csv`
+
+Contains training iteration and loss values.
+
+---
+
+## 🚀 Future Improvements
+
+* Experiment with different neural network architectures
+* Tune learning rate
+* Tune hidden-layer sizes
+* Compare different activation functions
+* Use cross-validation
+* Compare MLP with XGBoost, SVM, and Random Forest
+* Experiment with deep learning frameworks such as TensorFlow and PyTorch
+* Apply neural networks to image and NLP datasets
+
+---
+
+## 💡 Key Learning
+
+Day 15 introduced me to **Artificial Neural Networks**.
+
+The main learning pipeline was:
+
+```text
+Features
+   ↓
+Scaling
+   ↓
+Neural Network
+   ↓
+Hidden Layers
+   ↓
+Activation Function
+   ↓
+Prediction
+```
+
+This project helped me understand the foundation behind more advanced **Deep Learning and AI systems**.
+
+---
+
+## 👨‍💻 Author
+
+**Magesh L**
+
+B.E. Computer Science and Engineering
+
+Karpaga Vinayaga College of Engineering and Technology
+
+---
+
+## 📌 30-Day ML Series
+
+**Day 15 / 30 Completed ✅**
+
+Learning → Building → Documenting → Sharing 🚀
+
 
 
 
