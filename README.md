@@ -3418,6 +3418,267 @@ Karpaga Vinayaga College of Engineering and Technology
 
 Learning → Building → Documenting → Sharing 🚀
 
+# Day 16 - Support Vector Regression for House Price Prediction
+
+## 📌 Project Overview
+
+This project demonstrates **Support Vector Regression (SVR)** for predicting house values.
+
+The project uses the **California Housing dataset** available through Scikit-learn.
+
+SVR is a regression technique based on the Support Vector Machine algorithm.
+
+This project is part of my **30-Day Machine Learning Learning Series**.
+
+---
+
+## 🎯 Objectives
+
+* Understand Support Vector Regression
+* Learn how SVR can be used for regression problems
+* Understand the importance of feature scaling
+* Learn about the RBF kernel
+* Understand important SVR parameters
+* Evaluate regression performance
+* Analyze prediction errors
+
+---
+
+## 🧠 Machine Learning Concept
+
+### Support Vector Regression
+
+Support Vector Regression extends the Support Vector Machine concept to continuous-value prediction.
+
+Instead of predicting classes, SVR predicts a numerical value.
+
+In this project:
+
+```text
+Housing Features
+       ↓
+Feature Scaling
+       ↓
+SVR
+       ↓
+House Value Prediction
+```
+
+---
+
+## 🔑 Important SVR Parameters
+
+### Kernel
+
+The project uses:
+
+```python
+kernel="rbf"
+```
+
+RBF stands for **Radial Basis Function**.
+
+### C
+
+```python
+C=100
+```
+
+Controls the trade-off between model complexity and training errors.
+
+### Gamma
+
+```python
+gamma="scale"
+```
+
+Controls how strongly individual training samples influence the model.
+
+### Epsilon
+
+```python
+epsilon=0.1
+```
+
+Defines the epsilon-tube within which errors are not penalized.
+
+---
+
+## 📊 Dataset
+
+The project uses the **California Housing dataset**.
+
+Features include:
+
+* MedInc
+* HouseAge
+* AveRooms
+* AveBedrms
+* Population
+* AveOccup
+* Latitude
+* Longitude
+
+Target:
+
+```text
+HouseValue
+```
+
+The target represents median house value in units of $100,000.
+
+---
+
+## 🔄 Workflow
+
+```text
+California Housing Dataset
+          ↓
+Data Exploration
+          ↓
+Train-Test Split
+          ↓
+StandardScaler
+          ↓
+Support Vector Regression
+          ↓
+RBF Kernel
+          ↓
+Prediction
+          ↓
+Evaluation
+          ↓
+Error Analysis
+```
+
+---
+
+## 📈 Evaluation Metrics
+
+The following metrics are used:
+
+### MAE
+
+Mean Absolute Error measures the average absolute difference between actual and predicted values.
+
+### MSE
+
+Mean Squared Error gives more weight to larger errors.
+
+### RMSE
+
+Root Mean Squared Error is the square root of MSE.
+
+### R² Score
+
+R² measures how much of the variation in the target is explained by the model.
+
+---
+
+## 📉 Visualizations
+
+The project generates:
+
+* Correlation matrix
+* Actual vs predicted scatter plot
+* Prediction error distribution
+
+---
+
+## 📂 Project Structure
+
+```text
+Day-16-Support-Vector-Regression/
+│
+├── SVR_House_Price_Prediction.ipynb
+├── svr_house_predictions.csv
+├── svr_model_summary.csv
+├── svr_error_analysis.csv
+└── README.md
+```
+
+---
+
+## 💾 Generated Files
+
+### `svr_house_predictions.csv`
+
+Contains actual and predicted house values.
+
+### `svr_model_summary.csv`
+
+Contains model configuration and evaluation metrics.
+
+### `svr_error_analysis.csv`
+
+Contains prediction errors and absolute errors.
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Support Vector Regression
+* StandardScaler
+* Google Colab / Jupyter Notebook
+
+---
+
+## 🚀 Future Improvements
+
+* Perform GridSearchCV for hyperparameter tuning
+* Compare RBF, linear, and polynomial kernels
+* Experiment with different C values
+* Experiment with different gamma values
+* Compare SVR with Linear Regression
+* Compare SVR with Random Forest Regression
+* Build a house-price prediction web application
+
+---
+
+## 💡 Key Learning
+
+Day 16 helped me understand that **Support Vector Machines are not limited to classification**.
+
+SVR can also be used to predict continuous numerical values.
+
+The major pipeline learned today was:
+
+```text
+Features
+   ↓
+Scaling
+   ↓
+Kernel Transformation
+   ↓
+SVR
+   ↓
+Continuous Prediction
+```
+
+---
+
+## 👨‍💻 Author
+
+**Magesh L**
+
+B.E. Computer Science and Engineering
+
+Karpaga Vinayaga College of Engineering and Technology
+
+---
+
+## 📌 30-Day ML Series
+
+**Day 16 / 30 Completed ✅**
+
+Learn → Build → Experiment → Document → Share 🚀
+
 
 
 
