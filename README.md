@@ -3661,23 +3661,268 @@ SVR
 Continuous Prediction
 ```
 
+# Day 17 - KNN Regression for House Price Prediction
+
+## 📌 Project Overview
+
+This project demonstrates **K-Nearest Neighbors (KNN) Regression** for predicting house values.
+
+The **California Housing dataset** from Scikit-learn is used for this project.
+
+Unlike traditional regression algorithms that learn an explicit equation, KNN Regression predicts a target value using the values of nearby training samples.
+
+This project is part of my **30-Day Machine Learning Learning Series**.
+
 ---
 
-## 👨‍💻 Author
+## 🎯 Objectives
 
-**Magesh L**
-
-B.E. Computer Science and Engineering
-
-Karpaga Vinayaga College of Engineering and Technology
+* Understand KNN Regression
+* Learn distance-based machine learning
+* Understand the importance of feature scaling
+* Experiment with different K values
+* Find a suitable K based on RMSE
+* Evaluate regression performance
+* Analyze prediction errors
 
 ---
 
-## 📌 30-Day ML Series
+## 🧠 What is KNN Regression?
 
-**Day 16 / 30 Completed ✅**
+KNN stands for **K-Nearest Neighbors**.
 
-Learn → Build → Experiment → Document → Share 🚀
+For regression, the algorithm looks at the nearest training examples and uses their target values to generate a prediction.
+
+Simplified workflow:
+
+```text
+New Data Point
+      ↓
+Calculate Distances
+      ↓
+Find K Nearest Neighbors
+      ↓
+Use Neighbor Target Values
+      ↓
+Generate Prediction
+```
+
+---
+
+## 🔍 KNN Parameters
+
+The model uses:
+
+```python
+KNeighborsRegressor(
+    n_neighbors=5,
+    weights="distance",
+    metric="minkowski",
+    p=2
+)
+```
+
+### `n_neighbors`
+
+Defines how many nearby samples are considered.
+
+### `weights="distance"`
+
+Closer samples receive greater influence on the prediction.
+
+### `metric="minkowski"`
+
+Defines the distance calculation.
+
+### `p=2`
+
+With `p=2`, Minkowski distance corresponds to Euclidean distance.
+
+---
+
+## 📊 Dataset
+
+The project uses the **California Housing dataset**.
+
+Features include:
+
+* MedInc
+* HouseAge
+* AveRooms
+* AveBedrms
+* Population
+* AveOccup
+* Latitude
+* Longitude
+
+Target:
+
+```text
+HouseValue
+```
+
+The target represents median house value in units of $100,000.
+
+---
+
+## 🔄 Machine Learning Workflow
+
+```text
+California Housing Dataset
+          ↓
+Data Exploration
+          ↓
+Train-Test Split
+          ↓
+Feature Scaling
+          ↓
+KNN Regression
+          ↓
+Test Different K Values
+          ↓
+Select K Based on RMSE
+          ↓
+Final Prediction
+          ↓
+Error Analysis
+```
+
+---
+
+## 📈 Evaluation Metrics
+
+The project uses:
+
+### MAE
+
+Mean Absolute Error measures the average absolute prediction error.
+
+### MSE
+
+Mean Squared Error gives greater weight to larger errors.
+
+### RMSE
+
+Root Mean Squared Error measures prediction error in the same general scale as the target.
+
+### R² Score
+
+R² measures the proportion of target variation explained by the model.
+
+---
+
+## 🧪 K Value Experiment
+
+The project tests multiple K values:
+
+```text
+K = 1
+K = 3
+K = 5
+K = 7
+K = 10
+K = 15
+K = 20
+```
+
+The RMSE values are compared to select a K value for the final model.
+
+---
+
+## 📂 Project Structure
+
+```text
+Day-17-KNN-Regression/
+│
+├── KNN_Regression_House_Price.ipynb
+├── knn_house_predictions.csv
+├── knn_k_experiment.csv
+├── knn_model_summary.csv
+└── README.md
+```
+
+---
+
+## 💾 Generated Files
+
+### `knn_house_predictions.csv`
+
+Contains:
+
+* Actual house values
+* Predicted house values
+* Prediction errors
+* Absolute errors
+
+### `knn_k_experiment.csv`
+
+Contains the performance of different K values.
+
+### `knn_model_summary.csv`
+
+Contains the final model configuration and evaluation metrics.
+
+---
+
+## 📊 Visualizations
+
+The project generates:
+
+* Correlation matrix
+* Actual vs predicted plot
+* Prediction error distribution
+* K vs RMSE experiment plot
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* KNeighborsRegressor
+* StandardScaler
+* Google Colab / Jupyter Notebook
+
+---
+
+## 🚀 Future Improvements
+
+* Use GridSearchCV for systematic hyperparameter tuning
+* Compare different distance metrics
+* Compare uniform and distance-based weights
+* Test larger datasets
+* Compare KNN with SVR
+* Compare KNN with tree-based regression
+* Build a real-time house price prediction application
+
+---
+
+## 💡 Key Learning
+
+Day 17 helped me understand **distance-based regression**.
+
+The main concept was:
+
+```text
+Training Data
+     ↓
+Calculate Distance
+     ↓
+Find Nearest Neighbors
+     ↓
+Use Neighbor Information
+     ↓
+Predict Continuous Value
+```
+
+I also learned why **feature scaling is important for KNN**, because the algorithm depends on distances between data points.
+
+
+
 
 
 
