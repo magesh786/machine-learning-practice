@@ -3921,6 +3921,254 @@ Predict Continuous Value
 
 I also learned why **feature scaling is important for KNN**, because the algorithm depends on distances between data points.
 
+# Day 18 — Isolation Forest for Anomaly Detection
+
+## 📌 Project Overview
+
+Welcome to **Day 18** of my 30-Day Machine Learning Daily Series.
+
+In this project, I implemented **Isolation Forest**, an unsupervised machine learning algorithm used to identify unusual or anomalous observations.
+
+The project simulates financial transactions and detects potentially unusual transactions based on:
+
+* Transaction Amount
+* Transaction Frequency
+* Transaction Hour
+* Distance From Home
+
+---
+
+## 🎯 Objective
+
+The main objectives are:
+
+* Understand anomaly detection
+* Learn how Isolation Forest works
+* Detect unusual transactions
+* Perform feature scaling
+* Analyze anomaly scores
+* Experiment with contamination levels
+* Create a custom anomaly detection function
+
+---
+
+## 🧠 What is Isolation Forest?
+
+**Isolation Forest** is an unsupervised learning algorithm designed specifically for anomaly detection.
+
+The basic idea is that anomalies are usually:
+
+* Rare
+* Different from normal observations
+* Easier to isolate from the rest of the data
+
+The algorithm creates random decision trees and measures how quickly observations can be isolated.
+
+An observation requiring fewer splits to isolate is more likely to be an anomaly.
+
+---
+
+## 🔍 Isolation Forest Output
+
+The model produces two important outputs.
+
+### Prediction
+
+```text
+1  → Normal
+-1 → Anomaly
+```
+
+### Anomaly Score
+
+The anomaly score indicates how unusual an observation is.
+
+Lower scores generally indicate observations that are more likely to be anomalous.
+
+---
+
+## 📊 Dataset
+
+This project uses a **synthetically generated financial transaction dataset**.
+
+The dataset contains:
+
+| Feature               | Description                           |
+| --------------------- | ------------------------------------- |
+| Amount                | Transaction amount                    |
+| Transaction_Frequency | Number of transactions                |
+| Transaction_Hour      | Time of transaction                   |
+| Distance_From_Home    | Distance between transaction and home |
+
+The dataset contains normal transactions and intentionally generated unusual transactions for demonstration.
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Google Colab
+* Jupyter Notebook
+
+---
+
+## 🔄 Machine Learning Workflow
+
+```text
+Generate Transaction Data
+          ↓
+Data Exploration
+          ↓
+Feature Selection
+          ↓
+Feature Scaling
+          ↓
+Isolation Forest
+          ↓
+Anomaly Prediction
+          ↓
+Anomaly Score Analysis
+          ↓
+Visualization
+          ↓
+Contamination Experiment
+          ↓
+Save Results
+```
+
+---
+
+## ⚙️ Model Configuration
+
+```python
+IsolationForest(
+    n_estimators=200,
+    contamination=0.03,
+    random_state=42,
+    n_jobs=-1
+)
+```
+
+### Parameters
+
+**n_estimators**
+
+Number of isolation trees used by the model.
+
+**contamination**
+
+Expected proportion of anomalies in the dataset.
+
+**random_state**
+
+Ensures reproducible results.
+
+**n_jobs**
+
+Allows the model to use multiple CPU cores.
+
+---
+
+## 📈 Experiments
+
+The project experiments with different contamination values:
+
+```text
+0.01
+0.02
+0.03
+0.05
+0.08
+```
+
+This helps understand how the expected anomaly percentage affects the number of detected anomalies.
+
+---
+
+## 📊 Visualizations
+
+The project generates:
+
+1. Transaction Amount vs Transaction Frequency
+2. Transaction Hour vs Distance From Home
+3. Anomaly Score Distribution
+4. Contamination vs Detected Anomalies
+
+---
+
+## 📁 Generated Files
+
+### `isolation_forest_transactions.csv`
+
+Contains all transactions along with:
+
+* Anomaly Prediction
+* Anomaly Label
+* Anomaly Score
+
+### `detected_anomalies.csv`
+
+Contains only transactions classified as anomalies.
+
+### `isolation_forest_experiment.csv`
+
+Contains results from different contamination values.
+
+### `isolation_forest_model_summary.csv`
+
+Contains the main model configuration and summary statistics.
+
+---
+
+## 🌍 Real-World Applications
+
+Isolation Forest can be used in areas such as:
+
+* Fraud detection
+* Network intrusion detection
+* Cybersecurity
+* Manufacturing defect detection
+* Sensor anomaly detection
+* Financial transaction monitoring
+* Healthcare monitoring
+* IoT monitoring
+* System failure detection
+
+---
+
+## 💡 Key Learning Outcomes
+
+Through this project, I learned:
+
+* What anomaly detection means
+* How Isolation Forest works
+* Difference between supervised and unsupervised learning
+* Feature scaling
+* Anomaly scores
+* Contamination parameter
+* Outlier visualization
+* Practical anomaly detection workflow
+
+---
+
+## 🚀 Future Improvements
+
+Possible improvements include:
+
+* Use a real financial transaction dataset
+* Compare Isolation Forest with DBSCAN
+* Compare with Local Outlier Factor
+* Build a real-time fraud detection dashboard
+* Deploy the model using Streamlit
+* Integrate the model with an API
+
+---
+
+
 
 
 
