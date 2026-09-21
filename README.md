@@ -4168,11 +4168,243 @@ Possible improvements include:
 
 ---
 
+# Day 19 — Hierarchical Clustering for Customer Segmentation
 
+## 📌 Project Overview
 
+Welcome to **Day 19** of my 30-Day Machine Learning Daily Series.
 
+In this project, I implemented **Hierarchical Clustering** using **Agglomerative Clustering** to segment customers based on their purchasing characteristics.
 
+The project analyzes:
 
+* Annual Income
+* Spending Score
+* Age
+* Purchase Frequency
 
+The objective is to discover natural groups of customers without using predefined labels.
 
+---
 
+## 🎯 Objective
+
+The main objectives of this project are:
+
+* Understand hierarchical clustering
+* Learn Agglomerative Clustering
+* Understand dendrograms
+* Perform customer segmentation
+* Use feature scaling
+* Evaluate clusters using Silhouette Score
+* Experiment with different numbers of clusters
+* Analyze customer groups
+
+---
+
+## 🧠 What is Hierarchical Clustering?
+
+Hierarchical Clustering is an **unsupervised machine learning algorithm** that creates a hierarchy of clusters.
+
+There are two major approaches:
+
+### 1. Agglomerative Clustering
+
+Starts with each data point as an individual cluster and progressively merges similar clusters.
+
+```text
+Individual Points
+       ↓
+Small Clusters
+       ↓
+Larger Clusters
+       ↓
+Final Clusters
+```
+
+### 2. Divisive Clustering
+
+Starts with one large cluster and progressively divides it into smaller clusters.
+
+This project uses **Agglomerative Clustering**.
+
+---
+
+## 🌳 What is a Dendrogram?
+
+A **dendrogram** is a tree-like visualization that shows how clusters are progressively merged.
+
+It helps understand the hierarchical structure of the data and can assist in selecting an appropriate number of clusters.
+
+---
+
+## 📊 Dataset
+
+This project uses a synthetically generated customer dataset.
+
+| Feature            | Description                |
+| ------------------ | -------------------------- |
+| Customer_ID        | Unique customer identifier |
+| Annual_Income      | Customer annual income     |
+| Spending_Score     | Customer spending score    |
+| Age                | Customer age               |
+| Purchase_Frequency | Number of purchases        |
+
+---
+
+## ⚙️ Algorithm
+
+The project uses:
+
+```python
+AgglomerativeClustering(
+    n_clusters=4,
+    metric="euclidean",
+    linkage="ward"
+)
+```
+
+### Important Parameters
+
+**n_clusters**
+
+Number of customer groups to create.
+
+**metric**
+
+Distance measurement between observations.
+
+**linkage**
+
+Method used to determine how clusters are merged.
+
+The project uses:
+
+```text
+Ward Linkage
+```
+
+---
+
+## 📐 Silhouette Score
+
+The **Silhouette Score** measures how well-separated the generated clusters are.
+
+Its value generally ranges from:
+
+```text
+-1 to +1
+```
+
+A higher score generally indicates better-defined clustering structure.
+
+The project tests multiple cluster counts and selects the configuration with the highest Silhouette Score for the experiment.
+
+---
+
+## 🔄 Machine Learning Workflow
+
+```text
+Generate Customer Dataset
+          ↓
+Data Exploration
+          ↓
+Feature Selection
+          ↓
+Feature Scaling
+          ↓
+Create Dendrogram
+          ↓
+Agglomerative Clustering
+          ↓
+Cluster Evaluation
+          ↓
+Silhouette Score
+          ↓
+Cluster Experiment
+          ↓
+Customer Segmentation
+          ↓
+Save Results
+```
+
+---
+
+## 📈 Visualizations
+
+The project generates:
+
+1. Hierarchical Clustering Dendrogram
+2. Annual Income vs Spending Score
+3. Age vs Spending Score
+4. Number of Clusters vs Silhouette Score
+
+---
+
+## 📁 Generated Files
+
+### `hierarchical_customer_segmentation.csv`
+
+Contains customer information along with:
+
+* Cluster assignment
+* Best cluster assignment
+* Customer segment
+
+### `hierarchical_cluster_summary.csv`
+
+Contains average statistics for each cluster.
+
+### `hierarchical_cluster_experiment.csv`
+
+Contains Silhouette Scores for different numbers of clusters.
+
+### `hierarchical_model_summary.csv`
+
+Contains the main model configuration and evaluation information.
+
+---
+
+## 💼 Real-World Applications
+
+Hierarchical Clustering can be applied to:
+
+* Customer segmentation
+* Market research
+* Document clustering
+* Social network analysis
+* Biological data analysis
+* Image segmentation
+* Recommendation systems
+* Product grouping
+
+---
+
+## 💡 Key Learning Outcomes
+
+Through this project, I learned:
+
+* Unsupervised learning
+* Hierarchical clustering
+* Agglomerative clustering
+* Dendrogram interpretation
+* Ward linkage
+* Euclidean distance
+* Feature scaling
+* Silhouette Score
+* Customer segmentation
+
+---
+
+## 🚀 Future Improvements
+
+Possible improvements include:
+
+* Use a real customer dataset
+* Compare Hierarchical Clustering with K-Means
+* Compare different linkage methods
+* Build an interactive Streamlit dashboard
+* Add customer purchasing history
+* Build a recommendation system based on customer clusters
+
+---
