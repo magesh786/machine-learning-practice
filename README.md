@@ -4408,3 +4408,299 @@ Possible improvements include:
 * Build a recommendation system based on customer clusters
 
 ---
+# Day 20 — Naive Bayes for SMS Spam Detection
+
+## 📌 Project Overview
+
+Welcome to **Day 20** of my Machine Learning Daily Series.
+
+For Day 20, I explored **Naive Bayes Classification** and built a simple **SMS Spam Detection** system.
+
+The project classifies messages into two categories:
+
+* **Ham** — Normal message
+* **Spam** — Unwanted/promotional message
+
+The project combines **TF-IDF text vectorization** with **Multinomial Naive Bayes**.
+
+---
+
+## 🎯 Objective
+
+The main objectives of this project are:
+
+* Understand Naive Bayes classification
+* Work with text data
+* Convert text into numerical features
+* Use TF-IDF vectorization
+* Train a Multinomial Naive Bayes model
+* Detect spam messages
+* Evaluate classification performance
+* Experiment with the `alpha` parameter
+* Test custom messages
+
+---
+
+## 🧠 What is Naive Bayes?
+
+Naive Bayes is a probabilistic machine learning algorithm based on **Bayes' theorem**.
+
+It assumes that features are conditionally independent given the class.
+
+For text classification, Naive Bayes is widely used because it is:
+
+* Simple
+* Fast
+* Efficient with high-dimensional text data
+* Suitable for classification problems
+
+---
+
+## 🔢 Bayes' Theorem
+
+The basic idea can be represented as:
+
+```text
+P(Class | Features)
+```
+
+The model calculates the probability that a message belongs to a particular class based on the words/features present in that message.
+
+---
+
+## 📱 Project Use Case
+
+The project simulates an SMS filtering system.
+
+Example:
+
+```text
+"Congratulations you won a free prize claim now"
+```
+
+Possible prediction:
+
+```text
+SPAM
+```
+
+Another example:
+
+```text
+"Can you send me the assignment?"
+```
+
+Possible prediction:
+
+```text
+HAM
+```
+
+---
+
+## 📊 Dataset
+
+The notebook uses a small SMS message dataset containing two classes:
+
+| Label | Meaning                      |
+| ----- | ---------------------------- |
+| Ham   | Normal message               |
+| Spam  | Unwanted/promotional message |
+
+The dataset is created directly in the notebook so the project can run in Google Colab without requiring an external dataset download.
+
+---
+
+## 🔄 Machine Learning Workflow
+
+```text
+SMS Messages
+     ↓
+Data Cleaning
+     ↓
+Train-Test Split
+     ↓
+TF-IDF Vectorization
+     ↓
+Multinomial Naive Bayes
+     ↓
+Prediction
+     ↓
+Model Evaluation
+     ↓
+Custom Message Testing
+```
+
+---
+
+## 🔤 TF-IDF Vectorization
+
+Machine learning models cannot directly process raw text.
+
+Therefore, the project uses **TF-IDF (Term Frequency-Inverse Document Frequency)** to convert messages into numerical vectors.
+
+```python
+TfidfVectorizer(
+    lowercase=True,
+    stop_words="english",
+    ngram_range=(1, 2)
+)
+```
+
+The project uses both:
+
+* Unigrams
+* Bigrams
+
+---
+
+## 🤖 Model Used
+
+```python
+MultinomialNB()
+```
+
+**Multinomial Naive Bayes** is particularly useful for text classification problems.
+
+---
+
+## 📈 Evaluation Metrics
+
+The model is evaluated using:
+
+### Accuracy
+
+Overall percentage of correctly classified messages.
+
+### Precision
+
+Measures how many messages predicted as spam are actually spam.
+
+### Recall
+
+Measures how many actual spam messages were successfully detected.
+
+### F1 Score
+
+Combines precision and recall into a single metric.
+
+### Confusion Matrix
+
+Shows:
+
+```text
+True Positive
+True Negative
+False Positive
+False Negative
+```
+
+---
+
+## 🧪 Hyperparameter Experiment
+
+The project experiments with different values of:
+
+```text
+Alpha
+```
+
+Values tested:
+
+```text
+0.01
+0.1
+0.5
+1.0
+2.0
+```
+
+This demonstrates how smoothing can affect Naive Bayes performance.
+
+---
+
+## 📊 Visualizations
+
+The project generates:
+
+1. Ham vs Spam Distribution
+2. Confusion Matrix
+3. Alpha vs Accuracy
+
+---
+
+## 📁 Generated Files
+
+### `naive_bayes_sms_predictions.csv`
+
+Contains test messages with:
+
+* Actual label
+* Predicted label
+* Spam probability
+
+### `naive_bayes_alpha_experiment.csv`
+
+Contains model performance for different alpha values.
+
+### `naive_bayes_model_summary.csv`
+
+Contains the main model metrics.
+
+---
+
+## 🌍 Real-World Applications
+
+Naive Bayes can be used for:
+
+* Spam detection
+* Email classification
+* Sentiment analysis
+* News classification
+* Document classification
+* Text categorization
+* Support ticket classification
+
+---
+
+## 💡 Key Learning Outcomes
+
+Through this project, I learned:
+
+* Text classification
+* Bayes theorem
+* Multinomial Naive Bayes
+* TF-IDF
+* Unigrams and bigrams
+* Classification metrics
+* Confusion matrices
+* Hyperparameter experimentation
+
+---
+
+## 🚀 Future Improvements
+
+Future versions of this project could include:
+
+* A larger real-world SMS dataset
+* Text preprocessing and lemmatization
+* Comparing Naive Bayes with Logistic Regression
+* Comparing Naive Bayes with SVM
+* Building a Streamlit spam detection application
+* Deploying the model as an API
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Google Colab
+* Jupyter Notebook
+
+---
+
+
