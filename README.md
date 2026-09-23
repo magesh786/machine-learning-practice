@@ -4703,4 +4703,277 @@ Future versions of this project could include:
 
 ---
 
+# 🚀 Day 21 — Advanced Random Forest Regression
+
+## 🏠 California Housing Price Prediction
+
+As part of my **30-Day Machine Learning Daily Series**, Day 21 focuses on an advanced implementation of **Random Forest Regression** for predicting California housing values.
+
+Instead of using a basic Random Forest model, this project demonstrates a more realistic end-to-end machine learning workflow including **feature engineering, pipelines, cross-validation, hyperparameter optimization, model interpretation, residual analysis, learning curves, and model persistence**.
+
+---
+
+## 📌 Project Overview
+
+The objective of this project is to predict the median house value using demographic, geographic, and household-related features from the **California Housing dataset**.
+
+The project goes beyond simply training a model by implementing several advanced machine learning techniques.
+
+### Main workflow
+
+```text
+California Housing Dataset
+          ↓
+Exploratory Data Analysis
+          ↓
+Feature Engineering
+          ↓
+Train / Validation / Test Split
+          ↓
+Preprocessing Pipeline
+          ↓
+Random Forest Regression
+          ↓
+5-Fold Cross-Validation
+          ↓
+Randomized Hyperparameter Search
+          ↓
+Best Model Selection
+          ↓
+Model Evaluation
+          ↓
+Feature & Permutation Importance
+          ↓
+Residual Analysis
+          ↓
+Learning Curve
+          ↓
+Model Saving
+          ↓
+Custom House Prediction
+```
+
+---
+
+## 🎯 Objectives
+
+* Predict California housing values using Random Forest Regression.
+* Build a complete machine learning pipeline.
+* Perform feature engineering.
+* Handle missing values using preprocessing pipelines.
+* Apply 5-fold cross-validation.
+* Optimize Random Forest hyperparameters.
+* Evaluate the model using multiple regression metrics.
+* Analyze feature importance.
+* Perform permutation importance analysis.
+* Study model residuals.
+* Generate empirical prediction intervals.
+* Save the trained model for future use.
+* Perform predictions on new house data.
+
+---
+
+## 📊 Dataset
+
+The project uses the **California Housing dataset** available through `scikit-learn`.
+
+### Original features
+
+| Feature    | Description                 |
+| ---------- | --------------------------- |
+| MedInc     | Median income               |
+| HouseAge   | Median house age            |
+| AveRooms   | Average number of rooms     |
+| AveBedrms  | Average number of bedrooms  |
+| Population | Block population            |
+| AveOccup   | Average household occupancy |
+| Latitude   | Geographic latitude         |
+| Longitude  | Geographic longitude        |
+
+### Target
+
+```text
+MedHouseVal
+```
+
+The target represents the median house value in units of hundreds of thousands of dollars.
+
+---
+
+## 🧠 Feature Engineering
+
+Five additional features are created to provide the model with more meaningful relationships.
+
+### 1. Rooms Per Household
+
+```text
+Rooms_Per_Household =
+AveRooms / AveOccup
+```
+
+### 2. Bedrooms Per Room
+
+```text
+Bedrooms_Per_Room =
+AveBedrms / AveRooms
+```
+
+### 3. Population Per Household
+
+```text
+Population_Per_Household =
+Population / AveOccup
+```
+
+### 4. Income × Age Interaction
+
+```text
+Income_Age_Interaction =
+MedInc × HouseAge
+```
+
+### 5. Income × Rooms Interaction
+
+```text
+Income_Room_Interaction =
+MedInc × AveRooms
+```
+
+These engineered features allow the model to capture additional relationships between the original variables.
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Random Forest
+* RandomizedSearchCV
+* K-Fold Cross-Validation
+* Pipeline
+* Feature Engineering
+* Permutation Importance
+
+---
+
+## 🤖 Machine Learning Algorithm
+
+### Random Forest Regression
+
+Random Forest is an ensemble learning algorithm that combines multiple decision trees.
+
+For regression, the predictions from individual trees are aggregated to produce the final prediction.
+
+Conceptually:
+
+```text
+                 Training Data
+                       │
+          ┌────────────┼────────────┐
+          ↓            ↓            ↓
+       Tree 1       Tree 2       Tree 3
+          ↓            ↓            ↓
+      Prediction    Prediction    Prediction
+          └────────────┼────────────┘
+                       ↓
+              Final Prediction
+```
+
+---
+
+## 🔧 Advanced Hyperparameter Optimization
+
+Instead of manually selecting model parameters, `RandomizedSearchCV` is used.
+
+The search explores parameters such as:
+
+```python
+n_estimators
+max_depth
+min_samples_split
+min_samples_leaf
+max_features
+bootstrap
+```
+
+Example search space:
+
+```python
+param_distributions = {
+    "model__n_estimators": [100, 200, 300, 500],
+    "model__max_depth": [None, 10, 20, 30, 40],
+    "model__min_samples_split": [2, 5, 10],
+    "model__min_samples_leaf": [1, 2, 4],
+    "model__max_features": [0.5, 0.7, 1.0],
+    "model__bootstrap": [True, False]
+}
+```
+
+The optimization uses **5-fold cross-validation** and minimizes RMSE.
+
+---
+
+## 📈 Evaluation Metrics
+
+The model is evaluated using:
+
+### MAE — Mean Absolute Error
+
+Measures the average absolute difference between actual and predicted values.
+
+### MSE — Mean Squared Error
+
+Penalizes larger errors more heavily.
+
+### RMSE — Root Mean Squared Error
+
+Provides the square root of MSE and is easier to interpret in the target's units.
+
+### R² Score
+
+Measures how much of the variance in the target variable is explained by the model.
+
+---
+
+## 🔍 Model Interpretability
+
+Two feature-importance approaches are used.
+
+### 1. Random Forest Feature Importance
+
+Uses the importance calculated from the trained decision trees.
+
+### 2. Permutation Importance
+
+Features are randomly shuffled and the change in model performance is measured.
+
+This provides another perspective on which features contribute most to predictions.
+
+---
+
+## 📉 Residual Analysis
+
+Residuals are calculated as:
+
+```text
+Residual = Actual Value - Predicted Value
+```
+
+The project analyzes:
+
+* Residual vs predicted values
+* Residual distribution
+* Largest prediction errors
+* Absolute prediction errors
+
+This helps identify patterns that may indicate model limitations.
+
+
+
+
+
 
