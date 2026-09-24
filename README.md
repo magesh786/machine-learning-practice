@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This is my first project in my **Daily Machine Learning Learning Series**.
+This is my first project in my **Daily Machine Learning Series**.
 
 The goal of this project is to understand the fundamentals of **Supervised Learning** by predicting whether a student will pass or fail based on:
 
