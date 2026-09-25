@@ -4972,6 +4972,468 @@ The project analyzes:
 
 This helps identify patterns that may indicate model limitations.
 
+# 🚀 Day 23 — Advanced Elastic Net Regression
+
+## 🏠 California Housing Price Prediction
+
+As part of my **Machine Learning Daily Series**, Day 23 focuses on **Elastic Net Regression**, a regularized linear regression technique that combines the ideas of **Lasso and Ridge Regression**.
+
+After exploring Lasso Regression on Day 22, this project goes one step further by combining **L1 and L2 regularization** in a single model.
+
+---
+
+## 🎯 Project Objective
+
+The objective is to predict California housing values while studying:
+
+* L1 regularization
+* L2 regularization
+* Feature selection
+* Coefficient shrinkage
+* Hyperparameter optimization
+* Cross-validation
+* Model comparison
+* Regression error analysis
+
+The project implements a complete machine learning workflow rather than simply training a single model.
+
+---
+
+## 🧠 What is Elastic Net?
+
+Elastic Net is a regularized regression technique that combines **L1 and L2 penalties**.
+
+Conceptually:
+
+```text
+Elastic Net
+     │
+     ├── L1 Regularization
+     │      ↓
+     │   Feature Selection
+     │
+     └── L2 Regularization
+            ↓
+       Coefficient Stability
+```
+
+The model is controlled mainly by two parameters:
+
+### Alpha
+
+Controls the overall regularization strength.
+
+### L1 Ratio
+
+Controls the balance between L1 and L2 regularization.
+
+```text
+l1_ratio = 1.0
+      ↓
+Lasso-like behavior
+
+l1_ratio = 0.0
+      ↓
+Ridge-like behavior
+
+0 < l1_ratio < 1
+      ↓
+Elastic Net combination
+```
+
+---
+
+## 🔬 Why Elastic Net?
+
+Lasso can perform feature selection by shrinking coefficients to zero, while Ridge helps stabilize coefficients through L2 regularization.
+
+Elastic Net combines these two behaviors.
+
+This makes it useful when:
+
+* Features may be correlated
+* Feature selection is desirable
+* Model complexity needs to be controlled
+* A balance between L1 and L2 regularization is required
+
+---
+
+## 📊 Dataset
+
+The project uses the **California Housing dataset** from Scikit-learn.
+
+### Original Features
+
+| Feature    | Description                 |
+| ---------- | --------------------------- |
+| MedInc     | Median income               |
+| HouseAge   | Median house age            |
+| AveRooms   | Average number of rooms     |
+| AveBedrms  | Average number of bedrooms  |
+| Population | Population                  |
+| AveOccup   | Average household occupancy |
+| Latitude   | Geographic latitude         |
+| Longitude  | Geographic longitude        |
+
+### Target
+
+```text
+MedHouseVal
+```
+
+The target represents median house value in units of hundreds of thousands of dollars.
+
+---
+
+## 🛠️ Feature Engineering
+
+The project creates additional features:
+
+### Rooms Per Household
+
+```text
+AveRooms / AveOccup
+```
+
+### Bedrooms Per Room
+
+```text
+AveBedrms / AveRooms
+```
+
+### Population Per Household
+
+```text
+Population / AveOccup
+```
+
+### Income × Age
+
+```text
+MedInc × HouseAge
+```
+
+### Income × Rooms
+
+```text
+MedInc × AveRooms
+```
+
+### Income × Occupancy
+
+```text
+MedInc × AveOccup
+```
+
+### Latitude × Longitude
+
+```text
+Latitude × Longitude
+```
+
+These engineered variables provide additional information for the regression model.
+
+---
+
+## ⚙️ Machine Learning Pipeline
+
+The project uses a Scikit-learn pipeline:
+
+```text
+Raw Dataset
+     ↓
+Feature Engineering
+     ↓
+Missing Value Imputation
+     ↓
+StandardScaler
+     ↓
+Elastic Net Regression
+     ↓
+Prediction
+     ↓
+Evaluation
+```
+
+Feature scaling is important because regularization is sensitive to the scale of the input variables.
+
+---
+
+## 🔧 Hyperparameter Optimization
+
+Two important Elastic Net parameters are optimized:
+
+```text
+alpha
+l1_ratio
+```
+
+The project uses:
+
+```python
+GridSearchCV
+```
+
+with **5-fold cross-validation**.
+
+The search selects the configuration with the lowest cross-validated RMSE.
+
+---
+
+## 📈 Model Evaluation
+
+The following metrics are calculated:
+
+### MAE
+
+Mean Absolute Error.
+
+### MSE
+
+Mean Squared Error.
+
+### RMSE
+
+Root Mean Squared Error.
+
+### R²
+
+Coefficient of determination.
+
+---
+
+## 🔍 Feature Selection
+
+Elastic Net can shrink coefficients toward zero.
+
+The project analyzes:
+
+* Total features
+* Selected features
+* Zero-coefficient features
+* Coefficient magnitude
+* Positive and negative coefficients
+
+This provides an interpretable view of the linear model.
+
+---
+
+## 🧪 Alpha Experiment
+
+Different values of `alpha` are tested to understand how regularization strength affects:
+
+* RMSE
+* R²
+* Number of non-zero coefficients
+
+The results are visualized using:
+
+```text
+Alpha vs RMSE
+```
+
+---
+
+## 🧪 L1 Ratio Experiment
+
+Different `l1_ratio` values are also evaluated.
+
+This helps study the balance between:
+
+```text
+L1 regularization
+        ↕
+L2 regularization
+```
+
+The project analyzes how this balance affects:
+
+* Prediction error
+* R²
+* Number of selected features
+
+---
+
+## 🔄 Model Comparison
+
+The project compares:
+
+* Linear Regression
+* Lasso Regression
+* Elastic Net
+* Ridge Regression
+
+This helps demonstrate the differences between regularized and non-regularized linear models.
+
+---
+
+## 📉 Residual Analysis
+
+Residuals are calculated as:
+
+```text
+Residual =
+Actual Value - Predicted Value
+```
+
+The project generates:
+
+* Residual vs predicted plot
+* Residual distribution
+* Largest prediction errors
+
+---
+
+## 📚 Learning Curve
+
+A learning curve compares training and validation RMSE across different training-set sizes.
+
+This provides insight into:
+
+* Model learning behavior
+* Potential underfitting
+* Potential overfitting
+* Effect of additional training data
+
+---
+
+## 💾 Model Persistence
+
+The final trained pipeline is saved as:
+
+```text
+elastic_net_house_model.pkl
+```
+
+This allows the trained model to be loaded and reused later without retraining.
+
+---
+
+## 📂 Project Structure
+
+```text
+Day-23-Advanced-Elastic-Net-Regression/
+│
+├── Day_23_Elastic_Net_Regression.ipynb
+│
+├── day23_outputs/
+│   ├── elastic_net_predictions.csv
+│   ├── elastic_net_coefficients.csv
+│   ├── elastic_net_alpha_experiment.csv
+│   ├── elastic_net_l1_ratio_experiment.csv
+│   ├── elastic_net_cross_validation.csv
+│   ├── elastic_net_grid_search.csv
+│   ├── elastic_net_model_summary.csv
+│   ├── best_parameters.csv
+│   ├── model_comparison.csv
+│   ├── elastic_net_house_model.pkl
+│   ├── elastic_net_coefficients.png
+│   ├── actual_vs_predicted.png
+│   ├── residual_analysis.png
+│   ├── residual_distribution.png
+│   ├── alpha_vs_rmse.png
+│   ├── l1_ratio_vs_rmse.png
+│   ├── l1_ratio_vs_features.png
+│   └── learning_curve.png
+│
+└── README.md
+```
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Elastic Net Regression
+* Lasso Regression
+* Ridge Regression
+* GridSearchCV
+* K-Fold Cross-Validation
+* Feature Engineering
+* Model Evaluation
+
+---
+
+## ▶️ Installation
+
+```bash
+pip install numpy pandas matplotlib scikit-learn joblib
+```
+
+---
+
+## ▶️ Run the Project
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/machine-learning-daily-series.git
+```
+
+Navigate to the project:
+
+```bash
+cd machine-learning-daily-series/Day-23-Advanced-Elastic-Net-Regression
+```
+
+Open the notebook:
+
+```bash
+jupyter notebook
+```
+
+Then run:
+
+```text
+Day_23_Elastic_Net_Regression.ipynb
+```
+
+The project can also be executed in Google Colab.
+
+---
+
+## 📌 Key Learning Outcomes
+
+Through this project, I learned:
+
+* How Elastic Net combines L1 and L2 regularization
+* The purpose of the `alpha` parameter
+* The purpose of the `l1_ratio` parameter
+* How regularization affects coefficients
+* How feature selection works
+* How to optimize multiple hyperparameters
+* How to use GridSearchCV
+* How to perform K-Fold cross-validation
+* How to compare Linear, Ridge, Lasso and Elastic Net models
+* How to analyze regression errors
+* How to save and reuse trained models
+
+---
+
+## 🚀 Future Improvements
+
+Possible extensions include:
+
+* Bayesian Ridge Regression
+* Huber Regression
+* Quantile Regression
+* Robust regression
+* SHAP-based model interpretation
+* Optuna hyperparameter optimization
+* XGBoost comparison
+* LightGBM comparison
+* Streamlit deployment
+* REST API deployment
+* Docker deployment
+
+---
+
+
 
 
 
