@@ -5432,6 +5432,320 @@ Possible extensions include:
 * Docker deployment
 
 ---
+# Day 24 — Advanced Time Series Forecasting
+
+## Electricity Demand Forecasting Using Machine Learning
+
+This project is part of my **30-Day Machine Learning Daily Series**.
+
+For Day 24, I moved from traditional regression and regularization techniques into **Time Series Forecasting**.
+
+The objective is to forecast hourly electricity demand using historical demand patterns, time-based features, temperature, lag features, and rolling statistics.
+
+---
+
+## Project Objective
+
+Build a machine learning forecasting system that can learn temporal patterns in electricity consumption and predict future electricity demand.
+
+The project uses:
+
+* Time-based feature engineering
+* Lag variables
+* Rolling statistics
+* Cyclic time encoding
+* Random Forest Regression
+* TimeSeriesSplit
+* RandomizedSearchCV
+* Walk-forward validation
+* Residual analysis
+* Feature importance
+
+---
+
+## Dataset
+
+A synthetic hourly electricity-demand dataset is generated directly inside the notebook.
+
+The dataset contains approximately two years of hourly observations.
+
+### Main columns
+
+| Feature     | Description           |
+| ----------- | --------------------- |
+| timestamp   | Date and time         |
+| hour        | Hour of the day       |
+| day_of_week | Day of the week       |
+| day_of_year | Day number            |
+| month       | Month                 |
+| is_weekend  | Weekend indicator     |
+| temperature | Simulated temperature |
+| demand      | Electricity demand    |
+
+---
+
+## Time Series Feature Engineering
+
+Instead of using only the current timestamp, historical demand information is converted into machine learning features.
+
+### Lag Features
+
+The model uses:
+
+* Lag 1 hour
+* Lag 2 hours
+* Lag 3 hours
+* Lag 24 hours
+* Lag 48 hours
+* Lag 168 hours
+
+For example:
+
+`lag_24` represents the electricity demand 24 hours earlier.
+
+This helps the model learn daily and weekly demand patterns.
+
+---
+
+## Rolling Features
+
+The project calculates:
+
+* 24-hour rolling mean
+* 24-hour rolling standard deviation
+* 168-hour rolling mean
+* 168-hour rolling standard deviation
+
+The rolling statistics are shifted before calculation to avoid using future target information.
+
+---
+
+## Cyclic Time Encoding
+
+Time is cyclical.
+
+For example, 23:00 and 00:00 are close to each other even though their numerical values are far apart.
+
+Therefore, sine and cosine transformations are used:
+
+* `hour_sin`
+* `hour_cos`
+* `day_sin`
+* `day_cos`
+* `month_sin`
+* `month_cos`
+
+---
+
+## Machine Learning Model
+
+The main model is:
+
+**Random Forest Regressor**
+
+Random Forest combines multiple decision trees to learn nonlinear relationships between historical demand, time features, temperature, and other variables.
+
+---
+
+## Train/Test Strategy
+
+A random train-test split is avoided because time series data has a temporal order.
+
+Instead:
+
+```text
+Past data → Training
+Future data → Testing
+```
+
+Approximately:
+
+* 80% → Training
+* 20% → Testing
+
+This provides a more realistic forecasting evaluation.
+
+---
+
+## Hyperparameter Optimization
+
+`RandomizedSearchCV` is used to search for better Random Forest parameters.
+
+Parameters explored include:
+
+* `n_estimators`
+* `max_depth`
+* `min_samples_split`
+* `min_samples_leaf`
+* `max_features`
+
+The search uses `TimeSeriesSplit` rather than ordinary random cross-validation.
+
+---
+
+## Evaluation Metrics
+
+The forecasting model is evaluated using:
+
+### MAE
+
+Mean Absolute Error measures the average absolute prediction error.
+
+### MSE
+
+Mean Squared Error penalizes larger errors more strongly.
+
+### RMSE
+
+Root Mean Squared Error represents prediction error in the same unit as electricity demand.
+
+### R²
+
+R² measures how much variation in the target is explained by the model.
+
+---
+
+## Walk-Forward Validation
+
+Time series models should be evaluated while respecting chronological order.
+
+This project uses `TimeSeriesSplit` to simulate multiple historical forecasting scenarios.
+
+This provides a more appropriate validation strategy than randomly shuffling observations.
+
+---
+
+## Visualizations
+
+The project generates:
+
+* Original demand time series
+* Actual vs predicted demand
+* Last 7 days forecast
+* Residual analysis
+* Residual distribution
+* Feature importance
+
+---
+
+## Feature Importance
+
+Feature importance is extracted from the trained Random Forest model.
+
+This helps identify which temporal and environmental variables contributed most to the predictions.
+
+Typical important features can include:
+
+* Recent demand
+* 24-hour lag
+* 168-hour lag
+* Rolling demand statistics
+* Temperature
+* Hour of day
+
+---
+
+## Model Persistence
+
+The trained model is saved using Joblib:
+
+```text
+electricity_demand_forecasting_model.pkl
+```
+
+It can later be loaded for prediction without retraining the model.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Google Colab
+
+---
+
+## Installation
+
+```bash
+pip install numpy pandas matplotlib scikit-learn joblib
+```
+
+The notebook can also be executed directly in Google Colab.
+
+---
+
+## Project Structure
+
+```text
+Day-24-Advanced-Time-Series-Forecasting/
+│
+├── Day_24_Advanced_Time_Series_Forecasting.ipynb
+│
+├── day24_outputs/
+│   ├── original_demand.png
+│   ├── actual_vs_predicted.png
+│   ├── last_7_days_forecast.png
+│   ├── residual_analysis.png
+│   ├── residual_distribution.png
+│   ├── feature_importance.png
+│   ├── forecast_predictions.csv
+│   ├── feature_importance.csv
+│   ├── model_metrics.csv
+│   ├── model_comparison.csv
+│   ├── walk_forward_validation.csv
+│   ├── hyperparameter_search.csv
+│   ├── best_parameters.csv
+│   ├── largest_forecast_errors.csv
+│   └── electricity_demand_forecasting_model.pkl
+│
+└── README.md
+```
+
+---
+
+## Key Learning Outcomes
+
+Through this project, I learned how to:
+
+1. Work with time-dependent datasets.
+2. Engineer lag features.
+3. Create rolling statistics.
+4. Encode cyclical time variables.
+5. Perform chronological train-test splitting.
+6. Apply Random Forest to forecasting.
+7. Perform time-series cross-validation.
+8. Optimize model hyperparameters.
+9. Analyze forecasting residuals.
+10. Identify important forecasting features.
+11. Save and reload a trained ML model.
+
+---
+
+## Future Improvements
+
+Possible improvements include:
+
+* LSTM forecasting
+* GRU networks
+* XGBoost forecasting
+* Prophet
+* ARIMA/SARIMA
+* Real electricity consumption datasets
+* Weather API integration
+* Real-time demand forecasting
+* Multi-step forecasting
+* Forecasting dashboards using Streamlit
+
+---
+
+## Conclusion
+
+
 
 
 
