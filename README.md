@@ -6091,6 +6091,321 @@ Possible improvements include:
 ---
 
 ## Conclusion
+# Day 26 — DBSCAN Customer Segmentation
+
+## Customer Segmentation Using DBSCAN
+
+This project is part of my **30-Day Machine Learning Daily Series**.
+
+For Day 26, I explored **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** for customer segmentation.
+
+DBSCAN is a density-based unsupervised machine learning algorithm that can identify clusters of different shapes and detect potential outliers or noise points.
+
+---
+
+## Project Objective
+
+The objective of this project is to segment customers based on their behavior and identify unusual customers using DBSCAN.
+
+The project uses:
+
+* Age
+* Annual Income
+* Purchase Frequency
+* Average Order Value
+* Website Visits
+* Discount Usage
+
+---
+
+## What is DBSCAN?
+
+**DBSCAN** stands for:
+
+> Density-Based Spatial Clustering of Applications with Noise
+
+Unlike K-Means, DBSCAN does not require the number of clusters to be specified in advance.
+
+It groups data points based on density.
+
+DBSCAN mainly uses two parameters:
+
+```text
+eps
+min_samples
+```
+
+### eps
+
+Defines the maximum distance between two points for them to be considered neighbors.
+
+### min_samples
+
+Defines the minimum number of points required to form a dense region.
+
+---
+
+## DBSCAN Point Types
+
+DBSCAN identifies three types of points:
+
+### 1. Core Point
+
+A point that has enough neighboring points within the specified `eps` radius.
+
+### 2. Border Point
+
+A point that is close to a core point but does not itself have enough neighbors to be a core point.
+
+### 3. Noise Point
+
+A point that does not belong to any dense region.
+
+In Scikit-learn, noise points are represented by:
+
+```python
+-1
+```
+
+---
+
+## Project Workflow
+
+```text
+Customer Dataset
+       ↓
+Data Exploration
+       ↓
+Feature Selection
+       ↓
+Feature Scaling
+       ↓
+Initial DBSCAN
+       ↓
+Cluster Detection
+       ↓
+Noise Detection
+       ↓
+Parameter Analysis
+       ↓
+PCA Visualization
+       ↓
+Cluster Evaluation
+       ↓
+Final DBSCAN Model
+       ↓
+Customer Segmentation
+```
+
+---
+
+## Dataset
+
+A synthetic customer dataset is generated for this project.
+
+The dataset contains customer behavioral information.
+
+### Features
+
+| Feature             | Description                |
+| ------------------- | -------------------------- |
+| Age                 | Customer age               |
+| Annual_Income       | Annual income              |
+| Purchase_Frequency  | Number of purchases        |
+| Average_Order_Value | Average spending per order |
+| Website_Visits      | Number of website visits   |
+| Discount_Usage      | Discount usage percentage  |
+
+---
+
+## Feature Scaling
+
+DBSCAN is distance-based, so feature scaling is important.
+
+The project uses:
+
+```python
+StandardScaler()
+```
+
+This transforms the features into a comparable numerical scale.
+
+---
+
+## DBSCAN Model
+
+The initial model uses:
+
+```python
+DBSCAN(
+    eps=0.8,
+    min_samples=10
+)
+```
+
+The project then evaluates different `eps` values to identify a suitable configuration.
+
+---
+
+## Parameter Analysis
+
+The project tests multiple `eps` values:
+
+```text
+0.3
+0.4
+0.5
+...
+1.5
+```
+
+For each value, the following information is recorded:
+
+* Number of clusters
+* Number of noise points
+* Noise percentage
+* Silhouette Score
+
+This helps understand how the `eps` parameter affects clustering.
+
+---
+
+## Cluster Evaluation
+
+The project uses:
+
+### Silhouette Score
+
+Measures how well-separated the clusters are.
+
+Higher values generally indicate better-defined clusters.
+
+### Calinski-Harabasz Score
+
+Measures the relationship between between-cluster dispersion and within-cluster dispersion.
+
+### Davies-Bouldin Score
+
+Measures similarity between clusters.
+
+Lower values generally indicate better separation.
+
+---
+
+## PCA Visualization
+
+The original dataset contains six features.
+
+PCA is used to reduce the feature space to two dimensions for visualization.
+
+```python
+PCA(n_components=2)
+```
+
+PCA is used only for visualization and does not replace the original features used by DBSCAN.
+
+---
+
+## Noise Detection
+
+One of the major advantages of DBSCAN is its ability to identify potential outliers.
+
+Noise points receive:
+
+```python
+Cluster = -1
+```
+
+The project separately analyzes these customers.
+
+This can be useful for applications such as:
+
+* Anomaly detection
+* Customer behavior analysis
+* Fraud investigation
+* Sensor data analysis
+* Network analysis
+
+---
+
+## Core and Border Point Analysis
+
+The project also identifies:
+
+```text
+Core Points
+Border Points
+Noise Points
+```
+
+This provides additional understanding of how DBSCAN forms its clusters.
+
+---
+
+## New Customer Analysis
+
+DBSCAN does not provide a native `predict()` method for unseen observations in Scikit-learn.
+
+Therefore, this project uses a **nearest-core-point distance approach** to demonstrate how a new customer can be compared with existing DBSCAN core points.
+
+If the new customer's nearest core point is within the selected `eps` distance, its associated cluster can be used as an estimated cluster.
+
+Otherwise, it can be treated as a potential noise point.
+
+This is an analytical demonstration rather than native DBSCAN prediction.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Google Colab
+
+---
+
+
+```
+
+---
+
+## Key Learning Outcomes
+
+Through this project, I learned:
+
+1. What DBSCAN is.
+2. How density-based clustering works.
+3. The meaning of `eps`.
+4. The meaning of `min_samples`.
+5. How DBSCAN identifies noise.
+6. Difference between core, border, and noise points.
+7. Why feature scaling is important for distance-based algorithms.
+8. How to analyze clustering parameters.
+9. How to evaluate unsupervised clustering.
+10. How to visualize clusters using PCA.
+11. How DBSCAN differs from K-Means and GMM.
+12. Why DBSCAN does not directly provide a standard prediction method for unseen data.
+
+---
+
+## DBSCAN vs GMM
+
+| Feature            | DBSCAN                  | GMM                      |
+| ------------------ | ----------------------- | ------------------------ |
+| Learning Type      | Unsupervised            | Unsupervised             |
+| Approach           | Density-based           | Probabilistic            |
+| Number of Clusters | Not required beforehand | Specified                |
+| Noise Detection    | Yes                     | Not directly             |
+| Soft Probabilities | No                      | Yes                      |
+| Cluster Shape      | Flexible                | Gaussian-based           |
+| Main Parameters    | eps, min_samples        | n_components, covariance |
+
+---
+
 
 
 
