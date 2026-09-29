@@ -6405,6 +6405,478 @@ Through this project, I learned:
 | Main Parameters    | eps, min_samples        | n_components, covariance |
 
 ---
+# Day 27 — PCA + K-Means Customer Segmentation
+
+## Dimensionality Reduction and Customer Segmentation using PCA
+
+This project is part of my **30-Day Machine Learning Series**.
+
+For Day 27, I explored **Principal Component Analysis (PCA)** and combined it with **K-Means Clustering** to perform customer segmentation.
+
+The main objective was to understand how high-dimensional data can be transformed into a smaller number of meaningful components while retaining most of the important information.
+
+---
+
+## Project Objective
+
+The project focuses on:
+
+* Understanding dimensionality reduction
+* Applying PCA to customer data
+* Measuring explained variance
+* Reducing the number of features
+* Visualizing high-dimensional data
+* Applying K-Means after PCA
+* Comparing original-space clustering with PCA-based clustering
+* Evaluating clustering performance
+* Predicting the cluster of a new customer
+
+---
+
+## What is PCA?
+
+**PCA (Principal Component Analysis)** is a dimensionality reduction technique.
+
+It transforms a dataset containing many correlated features into a smaller set of new variables called **Principal Components**.
+
+The goal is to retain as much information as possible while reducing the number of dimensions.
+
+### Example
+
+```text
+Original Features
+        ↓
+Standardization
+        ↓
+PCA
+        ↓
+Principal Components
+        ↓
+Reduced-Dimension Dataset
+```
+
+---
+
+## Why PCA?
+
+High-dimensional datasets can become difficult to:
+
+* Visualize
+* Analyze
+* Process
+* Interpret
+* Use for certain Machine Learning workflows
+
+PCA can help reduce these dimensions while preserving a large proportion of the dataset's variance.
+
+---
+
+## Dataset
+
+This project creates a synthetic customer dataset.
+
+### Features
+
+| Feature                 | Description                      |
+| ----------------------- | -------------------------------- |
+| Age                     | Customer age                     |
+| Annual Income           | Customer annual income           |
+| Purchase Frequency      | Number of purchases              |
+| Average Order Value     | Average spending per order       |
+| Website Visits          | Number of website visits         |
+| Discount Usage          | Percentage of discount usage     |
+| Customer Lifetime Value | Estimated customer value         |
+| App Usage Hours         | Time spent using the application |
+| Support Requests        | Number of support requests       |
+| Product Reviews         | Number of product reviews        |
+
+The dataset contains **10 original features**.
+
+---
+
+## Project Workflow
+
+```text
+Customer Dataset
+       ↓
+Data Exploration
+       ↓
+Feature Selection
+       ↓
+Correlation Analysis
+       ↓
+StandardScaler
+       ↓
+PCA
+       ↓
+Explained Variance Analysis
+       ↓
+Feature Reduction
+       ↓
+K-Means Clustering
+       ↓
+Cluster Evaluation
+       ↓
+Customer Segmentation
+       ↓
+New Customer Prediction
+```
+
+---
+
+## Step 1 — Data Exploration
+
+The project checks:
+
+* Dataset shape
+* Data types
+* Missing values
+* Statistical summary
+* Feature relationships
+
+---
+
+## Step 2 — Feature Scaling
+
+Before PCA, the features are standardized using:
+
+```python
+StandardScaler()
+```
+
+This is important because the features have different numerical ranges.
+
+For example:
+
+```text
+Age → tens
+Annual Income → thousands
+Customer Lifetime Value → thousands
+Website Visits → hundreds
+```
+
+Without scaling, large-valued features could have a disproportionate influence.
+
+---
+
+## Step 3 — PCA
+
+PCA is initially applied with all components to understand the variance captured by each component.
+
+The project calculates:
+
+* Explained variance ratio
+* Cumulative explained variance
+* Number of components required for 90% variance
+* Number of components required for 95% variance
+
+---
+
+## Explained Variance
+
+The project generates:
+
+```text
+PCA Scree Plot
+```
+
+and:
+
+```text
+Cumulative Explained Variance Plot
+```
+
+These visualizations help understand how many principal components are needed.
+
+---
+
+## Step 4 — Dimensionality Reduction
+
+The project selects the number of PCA components required to retain at least **90% of the variance**.
+
+For example:
+
+```python
+PCA(
+    n_components=components_90
+)
+```
+
+The exact number of components can change depending on the generated dataset.
+
+---
+
+## Step 5 — PCA Component Loadings
+
+PCA loadings are calculated to understand how strongly each original feature contributes to each principal component.
+
+Example:
+
+```text
+Feature
+   ↓
+PC1
+PC2
+PC3
+...
+```
+
+This provides insight into which original features contribute most strongly to the new components.
+
+---
+
+## Step 6 — PCA Visualization
+
+The project reduces the dataset to two principal components:
+
+```python
+PCA(n_components=2)
+```
+
+This allows the customer data to be visualized in a 2D space.
+
+```text
+PC2
+ ↑
+ |
+ |
+ |
+ +----------------→ PC1
+```
+
+---
+
+## Step 7 — K-Means Clustering
+
+After dimensionality reduction, K-Means clustering is applied to the PCA-transformed data.
+
+Different values of `K` are tested.
+
+```text
+K = 2
+K = 3
+K = 4
+K = 5
+K = 6
+K = 7
+K = 8
+```
+
+---
+
+## Step 8 — Elbow Method
+
+The project uses the **Elbow Method** to analyze K-Means inertia.
+
+```python
+model.inertia_
+```
+
+The resulting graph helps understand how clustering inertia changes as the number of clusters increases.
+
+---
+
+## Step 9 — Silhouette Analysis
+
+The project also calculates the **Silhouette Score** for different values of K.
+
+A higher silhouette score generally indicates better-separated clusters for the tested clustering configuration.
+
+The project selects the K value with the highest measured silhouette score among the tested values.
+
+---
+
+## Step 10 — Cluster Evaluation
+
+The final clustering model is evaluated using:
+
+### Silhouette Score
+
+Measures cluster separation and cohesion.
+
+### Calinski-Harabasz Score
+
+Measures the ratio between between-cluster dispersion and within-cluster dispersion.
+
+### Davies-Bouldin Score
+
+Measures similarity between clusters. Lower values generally indicate better separation.
+
+### Inertia
+
+Measures the sum of squared distances between observations and their assigned cluster centers.
+
+---
+
+## PCA + K-Means Visualization
+
+The final result is visualized using:
+
+```text
+Principal Component 1
+        vs
+Principal Component 2
+```
+
+with customers represented according to their assigned cluster.
+
+---
+
+## Original Features vs PCA
+
+The project compares:
+
+```text
+K-Means on Original Features
+```
+
+with:
+
+```text
+PCA + K-Means
+```
+
+The comparison includes:
+
+* Number of features
+* Silhouette Score
+* Inertia
+
+This helps understand how dimensionality reduction affects the clustering workflow.
+
+---
+
+## New Customer Prediction
+
+A new customer is created with values for all original features.
+
+The workflow is:
+
+```text
+New Customer
+      ↓
+StandardScaler
+      ↓
+PCA Transformation
+      ↓
+K-Means Prediction
+      ↓
+Predicted Cluster
+```
+
+This demonstrates how a trained PCA + K-Means pipeline can be used on new observations.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Google Colab
+
+---
+
+## Project Structure
+
+```text
+Day-27-PCA-KMeans-Customer-Segmentation/
+│
+├── Day_27_PCA_KMeans_Customer_Segmentation.ipynb
+│
+├── README.md
+│
+└── day27_outputs/
+    │
+    ├── customer_dataset.csv
+    ├── correlation_matrix.csv
+    ├── pca_explained_variance.csv
+    ├── pca_reduced_dataset.csv
+    ├── pca_component_loadings.csv
+    ├── kmeans_pca_analysis.csv
+    ├── final_metrics.csv
+    ├── cluster_distribution.csv
+    ├── cluster_profile.csv
+    ├── pca_cluster_centers.csv
+    ├── cluster_centers_original_space.csv
+    ├── original_vs_pca_comparison.csv
+    ├── new_customer_prediction.csv
+    ├── final_customer_dataset.csv
+    │
+    ├── pca_scree_plot.png
+    ├── pca_cumulative_variance.png
+    ├── pca_2d_visualization.png
+    ├── pca_kmeans_elbow.png
+    ├── pca_kmeans_silhouette.png
+    └── pca_kmeans_clusters.png
+```
+
+---
+
+## Key Learning Outcomes
+
+Through this project, I learned:
+
+1. What dimensionality reduction means.
+2. How PCA works.
+3. Why feature scaling is important before PCA.
+4. How explained variance is calculated.
+5. How to select PCA components.
+6. How to interpret PCA loadings.
+7. How to visualize high-dimensional data.
+8. How K-Means can be applied after dimensionality reduction.
+9. How to use the Elbow Method.
+10. How to use Silhouette Score for clustering analysis.
+11. How to compare clustering before and after PCA.
+12. How to transform new data using a trained PCA model.
+
+---
+
+## PCA vs K-Means
+
+PCA and K-Means solve different problems.
+
+| Technique        | Purpose                  |
+| ---------------- | ------------------------ |
+| PCA              | Dimensionality reduction |
+| K-Means          | Clustering               |
+| StandardScaler   | Feature scaling          |
+| Silhouette Score | Cluster evaluation       |
+
+They can be combined into a workflow:
+
+```text
+Scaling
+   ↓
+PCA
+   ↓
+K-Means
+   ↓
+Evaluation
+```
+
+---
+
+## Future Improvements
+
+Possible future improvements include:
+
+* Use real-world customer data
+* Build a PCA + K-Means pipeline
+* Add automated model selection
+* Compare PCA with other dimensionality reduction methods
+* Try t-SNE
+* Try UMAP
+* Build an interactive Streamlit dashboard
+* Add real-time customer segmentation
+* Experiment with different scaling methods
+* Compare multiple clustering algorithms
+
+---
+
 
 
 
