@@ -6876,6 +6876,436 @@ Possible future improvements include:
 * Compare multiple clustering algorithms
 
 ---
+# Day 28 — t-SNE Customer Segmentation
+
+## PCA vs t-SNE for Customer Data Visualization
+
+This project is part of my **30-Day Machine Learning Series**.
+
+For Day 28, I explored **t-SNE (t-Distributed Stochastic Neighbor Embedding)**, an advanced dimensionality-reduction technique commonly used for visualizing high-dimensional data.
+
+In this project, I compared **PCA and t-SNE** and used K-Means clustering to analyze customer groups.
+
+---
+
+## Project Objective
+
+The main objectives are:
+
+* Understand t-SNE
+* Perform dimensionality reduction
+* Compare PCA and t-SNE
+* Visualize high-dimensional customer data
+* Apply K-Means clustering
+* Analyze cluster separation
+* Evaluate clustering performance
+* Experiment with t-SNE perplexity
+* Predict the cluster of a new customer
+
+---
+
+## What is t-SNE?
+
+**t-SNE** stands for:
+
+> t-Distributed Stochastic Neighbor Embedding
+
+It is a nonlinear dimensionality-reduction technique designed primarily for visualizing high-dimensional data in a lower-dimensional space, commonly 2D or 3D.
+
+t-SNE attempts to preserve important local relationships between observations.
+
+---
+
+## PCA vs t-SNE
+
+| Feature            | PCA                        | t-SNE                                                 |
+| ------------------ | -------------------------- | ----------------------------------------------------- |
+| Type               | Linear                     | Nonlinear                                             |
+| Main Use           | Dimensionality reduction   | Visualization                                         |
+| Preserves          | Global variance structure  | Mainly local neighborhood structure                   |
+| Output             | Components                 | Embedding dimensions                                  |
+| Deterministic      | Generally yes              | Depends on initialization/random state                |
+| Interpretation     | Components can be analyzed | Embedding axes usually have no direct feature meaning |
+| Computational Cost | Lower                      | Higher                                                |
+
+---
+
+## Dataset
+
+A synthetic customer dataset is generated for this project.
+
+### Features
+
+| Feature                 | Description                |
+| ----------------------- | -------------------------- |
+| Age                     | Customer age               |
+| Annual Income           | Annual income              |
+| Purchase Frequency      | Purchase frequency         |
+| Average Order Value     | Average spending           |
+| Website Visits          | Number of website visits   |
+| Discount Usage          | Discount usage             |
+| Customer Lifetime Value | Estimated customer value   |
+| App Usage Hours         | Application usage          |
+| Support Requests        | Number of support requests |
+| Product Reviews         | Number of reviews          |
+
+---
+
+## Project Workflow
+
+```text
+Customer Dataset
+       ↓
+Data Exploration
+       ↓
+Feature Selection
+       ↓
+StandardScaler
+       ↓
+        ┌─────────────┐
+        ↓             ↓
+       PCA           t-SNE
+        ↓             ↓
+     2D Space       2D Space
+        ↓             ↓
+        └──────┬──────┘
+               ↓
+       Visualization
+               ↓
+        K-Means Analysis
+               ↓
+       Cluster Evaluation
+               ↓
+     New Customer Prediction
+```
+
+---
+
+## Step 1 — Feature Scaling
+
+The customer features have different numerical ranges.
+
+Therefore, the project uses:
+
+```python
+StandardScaler()
+```
+
+before applying PCA and t-SNE.
+
+---
+
+## Step 2 — PCA
+
+PCA is used as a baseline dimensionality-reduction method.
+
+The dataset is transformed into two principal components:
+
+```python
+PCA(n_components=2)
+```
+
+The resulting visualization provides a linear projection of the customer data.
+
+---
+
+## Step 3 — t-SNE
+
+The project applies t-SNE using:
+
+```python
+TSNE(
+    n_components=2,
+    perplexity=30,
+    learning_rate="auto",
+    init="pca",
+    max_iter=1000,
+    random_state=42
+)
+```
+
+The output contains two dimensions:
+
+```text
+t-SNE Dimension 1
+t-SNE Dimension 2
+```
+
+---
+
+## What is Perplexity?
+
+**Perplexity** is an important t-SNE parameter related to the effective number of nearby observations considered when constructing the embedding.
+
+This project experiments with:
+
+```text
+5
+10
+20
+30
+40
+50
+```
+
+to observe how the t-SNE optimization behaves.
+
+---
+
+## Important t-SNE Concept
+
+t-SNE is primarily a **visualization technique**.
+
+Its two output dimensions should not normally be interpreted like ordinary features.
+
+For example:
+
+```text
+t-SNE Dimension 1 = income
+```
+
+would generally be an incorrect interpretation.
+
+Instead, t-SNE should be used to investigate whether observations form visually distinct local neighborhoods.
+
+---
+
+## PCA Visualization
+
+The project generates:
+
+```text
+pca_visualization.png
+```
+
+This provides a 2D linear representation of the customer dataset.
+
+---
+
+## t-SNE Visualization
+
+The project generates:
+
+```text
+tsne_visualization.png
+```
+
+This provides a nonlinear 2D embedding.
+
+---
+
+## PCA vs t-SNE Visualization
+
+The project also generates:
+
+```text
+pca_vs_tsne.png
+```
+
+This allows the two dimensionality-reduction techniques to be visually compared.
+
+---
+
+## K-Means Clustering
+
+K-Means is evaluated using:
+
+```text
+K = 2
+K = 3
+K = 4
+K = 5
+K = 6
+K = 7
+K = 8
+```
+
+The project calculates:
+
+* Inertia
+* Silhouette Score
+
+for different values of K.
+
+---
+
+## Clustering Evaluation
+
+The final K-Means clustering is evaluated using:
+
+### Silhouette Score
+
+Measures how similar an observation is to its own cluster compared with other clusters.
+
+### Calinski-Harabasz Score
+
+Measures between-cluster dispersion relative to within-cluster dispersion.
+
+### Davies-Bouldin Score
+
+Measures similarity between clusters. Lower values generally indicate better separation.
+
+---
+
+## Cluster Visualization
+
+The final clusters are visualized using both:
+
+```text
+PCA
+```
+
+and:
+
+```text
+t-SNE
+```
+
+This provides different visual perspectives on the same customer groups.
+
+---
+
+## Important Note About Clustering on t-SNE
+
+t-SNE is mainly intended for visualization.
+
+Therefore, this project does **not** treat a t-SNE embedding as a universally better feature representation for clustering.
+
+The t-SNE K-Means experiment is included to understand how clustering can change when performed in a nonlinear embedding.
+
+For production ML workflows, model selection should be based on the specific dataset, objective, validation strategy, and business requirements.
+
+---
+
+## New Customer Prediction
+
+The final K-Means model is trained on the standardized original feature space.
+
+For a new customer:
+
+```text
+New Customer
+      ↓
+StandardScaler
+      ↓
+K-Means
+      ↓
+Predicted Cluster
+```
+
+The new customer is therefore transformed using the same scaler used during training.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* Joblib
+* Google Colab
+
+---
+
+## Project Structure
+
+```text
+Day-28-tSNE-Customer-Segmentation/
+│
+├── Day_28_tSNE_Customer_Segmentation.ipynb
+├── README.md
+│
+└── day28_outputs/
+    │
+    ├── customer_dataset.csv
+    ├── original_kmeans_results.csv
+    ├── pca_kmeans_results.csv
+    ├── tsne_kmeans_results.csv
+    ├── cluster_distribution.csv
+    ├── cluster_profile.csv
+    ├── tsne_perplexity_analysis.csv
+    ├── new_customer_prediction.csv
+    └── final_customer_dataset.csv
+    │
+    ├── pca_visualization.png
+    ├── tsne_visualization.png
+    ├── pca_vs_tsne.png
+    ├── clustering_comparison.png
+    ├── tsne_cluster_visualization.png
+    └── pca_cluster_visualization.png
+    │
+    ├── standard_scaler.pkl
+    ├── pca_model.pkl
+    └── kmeans_model.pkl
+```
+
+---
+
+## Key Learning Outcomes
+
+Through this project, I learned:
+
+1. What t-SNE is.
+2. How nonlinear dimensionality reduction works.
+3. The difference between PCA and t-SNE.
+4. The role of perplexity in t-SNE.
+5. Why feature scaling is important.
+6. How to visualize high-dimensional datasets.
+7. How K-Means can be evaluated using Silhouette Score.
+8. How clustering results can be visualized using PCA and t-SNE.
+9. Why t-SNE should mainly be treated as a visualization technique.
+10. How to transform new observations using a trained preprocessing and clustering workflow.
+
+---
+
+## Day 27 vs Day 28
+
+| Day    | Topic                          |
+| ------ | ------------------------------ |
+| Day 27 | PCA + K-Means                  |
+| Day 28 | t-SNE + Customer Visualization |
+
+### Day 27
+
+Focused on:
+
+```text
+Linear dimensionality reduction
++
+Clustering
+```
+
+### Day 28
+
+Focused on:
+
+```text
+Nonlinear visualization
++
+PCA comparison
++
+Clustering analysis
+```
+
+---
+
+## Future Improvements
+
+* Use real-world customer data
+* Experiment with UMAP
+* Compare PCA, t-SNE and UMAP
+* Build an interactive visualization dashboard
+* Use a real customer segmentation dataset
+* Perform hyperparameter optimization
+* Build a complete ML pipeline
+* Deploy the analysis using Streamlit
+
+---
+
+
+
 
 
 
