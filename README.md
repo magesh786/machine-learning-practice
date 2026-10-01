@@ -7302,19 +7302,415 @@ Clustering analysis
 * Build a complete ML pipeline
 * Deploy the analysis using Streamlit
 
+
+
+# Day 29 — XGBoost Customer Churn Prediction
+
+## Advanced Supervised Machine Learning
+
+This project is part of my **30-Day Machine Learning Series**.
+
+For Day 29, I explored **XGBoost (Extreme Gradient Boosting)** for customer churn prediction.
+
+The project covers supervised classification, model evaluation, feature importance, hyperparameter tuning, and prediction on a new customer.
+
 ---
 
+## Project Objective
 
+The main objectives are:
 
+* Understand XGBoost classification
+* Build a customer churn prediction model
+* Perform train-test splitting
+* Train a baseline XGBoost model
+* Evaluate classification performance
+* Analyze feature importance
+* Tune hyperparameters using RandomizedSearchCV
+* Compare baseline and tuned models
+* Predict churn probability for a new customer
+* Save the trained model for future use
 
+---
 
+## What is XGBoost?
 
+**XGBoost (Extreme Gradient Boosting)** is a gradient-boosting machine learning algorithm based on decision trees.
 
+It builds an ensemble of trees sequentially, with later trees attempting to improve the errors made by earlier trees.
 
+It is widely used for structured/tabular data.
 
+---
 
+## Project Type
 
+**Supervised Learning — Binary Classification**
 
+The target variable is:
+
+```text
+Churn
+```
+
+### Target values
+
+```text
+0 → Customer does not churn
+1 → Customer churns
+```
+
+---
+
+## Dataset
+
+This project uses a synthetic customer dataset containing 3,000 customer records.
+
+### Features
+
+| Feature            | Description                     |
+| ------------------ | ------------------------------- |
+| Age                | Customer age                    |
+| Tenure_Months      | Length of customer relationship |
+| Monthly_Charges    | Monthly payment                 |
+| Support_Calls      | Number of support calls         |
+| Login_Frequency    | Login frequency                 |
+| Usage_Hours        | Application usage               |
+| Discount_Usage     | Discount usage percentage       |
+| Payment_Delays     | Number of payment delays        |
+| Satisfaction_Score | Customer satisfaction           |
+| Total_Spend        | Total customer spending         |
+
+### Target
+
+| Target | Meaning  |
+| ------ | -------- |
+| 0      | No churn |
+| 1      | Churn    |
+
+---
+
+## Machine Learning Workflow
+
+```text
+Customer Dataset
+       ↓
+Data Exploration
+       ↓
+Feature Selection
+       ↓
+Train/Test Split
+       ↓
+Baseline XGBoost
+       ↓
+Prediction
+       ↓
+Model Evaluation
+       ↓
+Feature Importance
+       ↓
+Hyperparameter Tuning
+       ↓
+RandomizedSearchCV
+       ↓
+Tuned XGBoost
+       ↓
+Model Comparison
+       ↓
+New Customer Prediction
+       ↓
+Save Model
+```
+
+---
+
+## Step 1 — Dataset Creation
+
+A synthetic customer dataset is generated using NumPy and Pandas.
+
+The dataset contains customer behavior, usage, payment, and satisfaction-related features.
+
+The churn target is generated from a combination of customer behavior variables to create a classification problem.
+
+---
+
+## Step 2 — Train-Test Split
+
+The dataset is divided into:
+
+```text
+80% → Training
+20% → Testing
+```
+
+The split uses stratification to maintain the class distribution between training and testing data.
+
+```python
+train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    stratify=y,
+    random_state=42
+)
+```
+
+---
+
+## Step 3 — Baseline XGBoost Model
+
+The initial model uses:
+
+```python
+XGBClassifier()
+```
+
+Important parameters include:
+
+* `n_estimators`
+* `max_depth`
+* `learning_rate`
+* `subsample`
+* `colsample_bytree`
+
+---
+
+## Step 4 — Model Evaluation
+
+The baseline model is evaluated using:
+
+### Accuracy
+
+Measures the proportion of correct predictions.
+
+### Precision
+
+Measures how many predicted positive cases were actually positive.
+
+### Recall
+
+Measures how many actual positive cases were correctly identified.
+
+### F1 Score
+
+Combines precision and recall into one metric.
+
+### ROC-AUC
+
+Measures the model's ability to distinguish between the two classes across classification thresholds.
+
+---
+
+## Step 5 — Confusion Matrix
+
+The confusion matrix shows:
+
+```text
+                Predicted
+              0          1
+
+Actual 0     TN         FP
+
+Actual 1     FN         TP
+```
+
+This helps analyze different types of classification errors.
+
+---
+
+## Step 6 — ROC Curve
+
+The ROC curve is generated using the model's predicted probabilities.
+
+The project calculates:
+
+```python
+roc_auc_score()
+```
+
+and creates a visual ROC curve.
+
+---
+
+## Step 7 — Feature Importance
+
+XGBoost provides feature importance values.
+
+The project analyzes which features contribute most strongly to the trained tree ensemble.
+
+The feature importance output is saved as:
+
+```text
+baseline_feature_importance.csv
+```
+
+and:
+
+```text
+tuned_feature_importance.csv
+```
+
+---
+
+## Step 8 — Hyperparameter Tuning
+
+The project uses:
+
+```python
+RandomizedSearchCV
+```
+
+to explore different XGBoost configurations.
+
+Parameters explored include:
+
+```text
+n_estimators
+max_depth
+learning_rate
+subsample
+colsample_bytree
+```
+
+---
+
+## Why Hyperparameter Tuning?
+
+A model's performance can depend heavily on its configuration.
+
+Instead of manually testing every combination, RandomizedSearchCV samples different combinations and evaluates them using cross-validation.
+
+The scoring metric used is:
+
+```text
+ROC-AUC
+```
+
+---
+
+## Step 9 — Tuned XGBoost Model
+
+The best configuration found by RandomizedSearchCV is used to create the tuned model.
+
+The project then evaluates the tuned model on the test dataset.
+
+---
+
+## Step 10 — Baseline vs Tuned Model
+
+The project compares:
+
+```text
+Baseline XGBoost
+        VS
+Tuned XGBoost
+```
+
+using:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC-AUC
+
+The results are saved in:
+
+```text
+model_comparison.csv
+```
+
+---
+
+## Step 11 — New Customer Prediction
+
+A new customer is created with example feature values.
+
+The trained XGBoost model predicts:
+
+```text
+Predicted Churn
+```
+
+and:
+
+```text
+Churn Probability
+```
+
+Example workflow:
+
+```text
+New Customer
+      ↓
+Trained XGBoost Model
+      ↓
+Prediction
+      +
+Probability
+```
+
+---
+
+## Model Saving
+
+The trained model is saved using Joblib:
+
+```python
+joblib.dump(
+    tuned_model,
+    "xgboost_churn_model.pkl"
+)
+```
+
+This allows the model to be loaded later without retraining it.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* XGBoost
+* Joblib
+* Google Colab
+
+---
+
+## Project Structure
+
+```text
+Day-29-XGBoost-Customer-Churn/
+│
+├── Day_29_XGBoost_Customer_Churn.ipynb
+├── README.md
+│
+└── day29_outputs/
+    │
+    ├── customer_churn_dataset.csv
+    ├── baseline_metrics.csv
+    ├── tuned_metrics.csv
+    ├── model_comparison.csv
+    ├── baseline_feature_importance.csv
+    ├── tuned_feature_importance.csv
+    ├── best_parameters.csv
+    ├── new_customer_prediction.csv
+    │
+    ├── churn_distribution.png
+    ├── confusion_matrix.png
+    ├── tuned_confusion_matrix.png
+    ├── roc_curve.png
+    ├── tuned_roc_curve.png
+    └── feature_importance.png
+    │
+    ├── xgboost_churn_model.pkl
+    ├── feature_list.pkl
+```
+
+---
 
 
 
