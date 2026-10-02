@@ -7711,6 +7711,469 @@ Day-29-XGBoost-Customer-Churn/
 ```
 
 ---
+# Day 30 — End-to-End Machine Learning Project
+
+## Customer Churn Prediction using Random Forest and XGBoost
+
+This project marks the completion of my **30-Day Machine Learning Series**.
+
+For Day 30, I built an end-to-end supervised Machine Learning workflow for **customer churn prediction**.
+
+Instead of focusing on a single algorithm, this project compares two powerful tree-based models:
+
+* Random Forest
+* XGBoost
+
+The project also includes cross-validation, model evaluation, feature importance, ROC-AUC comparison, model selection, and saving the final model for future use.
+
+---
+
+## Project Objective
+
+The main objectives are:
+
+* Build an end-to-end Machine Learning workflow
+* Generate and explore a customer churn dataset
+* Perform train-test splitting
+* Train Random Forest
+* Train XGBoost
+* Compare multiple classification metrics
+* Perform 5-fold stratified cross-validation
+* Analyze feature importance
+* Compare ROC curves
+* Select a model for deployment
+* Save the final trained model
+* Predict churn for a new customer
+
+---
+
+## Problem Statement
+
+Customer churn is an important business problem.
+
+The objective of this project is to predict whether a customer is likely to leave a service based on customer behavior and account-related information.
+
+### Target Variable
+
+```text
+0 → Customer does not churn
+1 → Customer churns
+```
+
+This makes the project a:
+
+**Supervised Binary Classification Problem**
+
+---
+
+## Dataset
+
+The project generates a synthetic dataset containing **5,000 customer records**.
+
+### Features
+
+| Feature            | Description                    |
+| ------------------ | ------------------------------ |
+| Age                | Customer age                   |
+| Tenure_Months      | Customer relationship duration |
+| Monthly_Charges    | Monthly service charges        |
+| Support_Calls      | Number of support calls        |
+| Login_Frequency    | Number of logins               |
+| Usage_Hours        | Service usage                  |
+| Discount_Usage     | Discount usage percentage      |
+| Payment_Delays     | Number of delayed payments     |
+| Satisfaction_Score | Customer satisfaction          |
+| Total_Spend        | Total customer spending        |
+
+---
+
+## Machine Learning Workflow
+
+```text
+Customer Dataset
+       ↓
+Data Exploration
+       ↓
+Data Validation
+       ↓
+Feature Selection
+       ↓
+Train/Test Split
+       ↓
+      ┌─────────────────┐
+      ↓                 ↓
+Random Forest        XGBoost
+      ↓                 ↓
+Predictions          Predictions
+      ↓                 ↓
+      └────────┬────────┘
+               ↓
+       Model Evaluation
+               ↓
+       Cross Validation
+               ↓
+      Feature Importance
+               ↓
+        Model Comparison
+               ↓
+        Select Final Model
+               ↓
+       Save Trained Model
+               ↓
+      New Customer Prediction
+```
+
+---
+
+## Algorithms Used
+
+### 1. Random Forest
+
+Random Forest is an ensemble learning algorithm that combines multiple decision trees.
+
+Each tree contributes to the final prediction.
+
+Advantages include:
+
+* Handles nonlinear relationships
+* Works well with tabular data
+* Provides feature importance
+* Usually requires limited preprocessing
+
+---
+
+### 2. XGBoost
+
+XGBoost is a gradient-boosting algorithm based on decision trees.
+
+It builds trees sequentially and uses boosting to improve predictive performance.
+
+Important parameters include:
+
+```text
+n_estimators
+max_depth
+learning_rate
+subsample
+colsample_bytree
+```
+
+---
+
+## Model Evaluation
+
+The project uses multiple metrics rather than relying only on accuracy.
+
+### Accuracy
+
+The proportion of total predictions that are correct.
+
+### Precision
+
+Measures the proportion of predicted positive cases that are actually positive.
+
+### Recall
+
+Measures how many actual positive cases were identified.
+
+### F1 Score
+
+Combines precision and recall.
+
+### ROC-AUC
+
+Measures the model's ability to distinguish between the two classes across classification thresholds.
+
+---
+
+## Cross-Validation
+
+The project uses:
+
+```python
+StratifiedKFold(
+    n_splits=5,
+    shuffle=True,
+    random_state=42
+)
+```
+
+ROC-AUC is used as the cross-validation scoring metric.
+
+This provides a more robust estimate of model performance than relying on a single train/test split.
+
+---
+
+## Model Comparison
+
+The project compares:
+
+```text
+Random Forest
+       VS
+XGBoost
+```
+
+using:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC-AUC
+
+The results are saved to:
+
+```text
+model_comparison.csv
+```
+
+---
+
+## ROC Curve
+
+The project generates a combined ROC curve for both models.
+
+Output:
+
+```text
+roc_comparison.png
+```
+
+This allows the classification behavior of both models to be visually compared.
+
+---
+
+## Confusion Matrix
+
+Separate confusion matrices are generated for:
+
+```text
+Random Forest
+XGBoost
+```
+
+The confusion matrix contains:
+
+```text
+True Negative
+False Positive
+False Negative
+True Positive
+```
+
+These values help identify the types of prediction errors made by each model.
+
+---
+
+## Feature Importance
+
+Both models provide feature importance information.
+
+The project compares the importance assigned by:
+
+```text
+Random Forest
+XGBoost
+```
+
+Output:
+
+```text
+feature_importance_comparison.csv
+```
+
+This provides an additional way to understand which input variables are influential in the trained models.
+
+---
+
+## Model Selection
+
+The final model is selected based on the test-set ROC-AUC in this educational project.
+
+The selected model is then saved as:
+
+```text
+final_churn_model.pkl
+```
+
+For a real production system, model selection should use a proper validation strategy and business-specific objectives rather than relying on a single test-set metric.
+
+---
+
+## New Customer Prediction
+
+A new customer's information is passed to the selected model.
+
+The model returns:
+
+```text
+Predicted Churn
+```
+
+and:
+
+```text
+Churn Probability
+```
+
+Example workflow:
+
+```text
+New Customer
+      ↓
+Final ML Model
+      ↓
+Churn Prediction
+      +
+Probability
+```
+
+---
+
+## Model Persistence
+
+The final model is saved using Joblib:
+
+```python
+joblib.dump(
+    final_model,
+    "final_churn_model.pkl"
+)
+```
+
+This makes it possible to load the trained model later without retraining it.
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Scikit-learn
+* XGBoost
+* Joblib
+* Google Colab
+
+---
+
+## Project Structure
+
+```text
+Day-30-End-to-End-Machine-Learning/
+│
+├── Day_30_End_to_End_Machine_Learning.ipynb
+├── README.md
+│
+└── day30_outputs/
+    │
+    ├── customer_churn_dataset.csv
+    ├── model_comparison.csv
+    ├── cross_validation_results.csv
+    ├── feature_importance_comparison.csv
+    ├── new_customer_prediction.csv
+    │
+    ├── churn_distribution.png
+    ├── roc_comparison.png
+    ├── rf_confusion_matrix.png
+    ├── xgb_confusion_matrix.png
+    └── xgb_feature_importance.png
+    │
+    ├── final_churn_model.pkl
+    └── feature_list.pkl
+```
+
+---
+
+## Key Learning Outcomes
+
+After completing Day 30, I learned:
+
+1. How to build an end-to-end Machine Learning workflow.
+2. How to solve a binary classification problem.
+3. How Random Forest works at a practical level.
+4. How XGBoost works at a practical level.
+5. How to compare multiple ML algorithms.
+6. How to use cross-validation.
+7. How to evaluate models using multiple metrics.
+8. How to interpret feature importance.
+9. How to compare ROC curves.
+10. How to select a model for a deployment workflow.
+11. How to save a trained ML model.
+12. How to generate predictions for new data.
+
+---
+
+## My 30-Day Machine Learning Journey
+
+| Day        | Topic                     |
+| ---------- | ------------------------- |
+| Day 1      | Supervised Learning       |
+| Day 2      | Classification            |
+| Day 3      | Regression                |
+| Day 4      | Model Evaluation          |
+| Day 5      | Data Preprocessing        |
+| Day 6      | Linear Regression         |
+| Day 7      | Logistic Regression       |
+| Day 8      | K-Nearest Neighbors       |
+| Day 9      | Decision Trees            |
+| Day 10     | Random Forest             |
+| Day 11     | Ensemble Learning         |
+| Day 12     | Gradient Boosting         |
+| Day 13     | Advanced Classification   |
+| Day 14     | Model Evaluation          |
+| Day 15     | Feature Engineering       |
+| Day 16     | Cross-Validation          |
+| Day 17     | Hyperparameter Tuning     |
+| Day 18     | Classification Analysis   |
+| Day 19     | Advanced ML               |
+| Day 20     | Model Optimization        |
+| Day 21     | Advanced Machine Learning |
+| Day 22     | Unsupervised Learning     |
+| Day 23     | Clustering                |
+| Day 24     | K-Means                   |
+| Day 25     | Advanced Clustering       |
+| Day 26     | Dimensionality Reduction  |
+| Day 27     | PCA + K-Means             |
+| Day 28     | t-SNE                     |
+| Day 29     | XGBoost                   |
+| **Day 30** | **End-to-End ML Project** |
+
+---
+
+## What I Completed
+
+This 30-day journey helped me move from basic Machine Learning concepts to practical workflows involving:
+
+```text
+Data
+ ↓
+Preprocessing
+ ↓
+Supervised Learning
+ ↓
+Unsupervised Learning
+ ↓
+Model Evaluation
+ ↓
+Feature Engineering
+ ↓
+Hyperparameter Tuning
+ ↓
+Cross-Validation
+ ↓
+Model Comparison
+ ↓
+Model Saving
+ ↓
+Prediction
+```
+
+---
+
+
 
 
 
